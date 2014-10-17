@@ -1,17 +1,41 @@
-//
+// ----------------------------------------------------
 //  DTexAppDelegate.m
 //  DTex
 //
 //  Created by Rene  Trevino Jr. on 10/16/14.
 //  Copyright (c) 2014 CS378. All rights reserved.
-//
+// ----------------------------------------------------
 
 #import "DTexAppDelegate.h"
+// Include Parse SDK library
+#import <Parse/Parse.h>
+// If you are using Facebook, uncomment this line
+// #import <ParseFacebookUtils/PFFacebookUtils.h>
+
+// delete
+//#import "ParseStarterProjectViewController.h"
+//#import "MyTableControllerViewController.h"
 
 @implementation DTexAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // ****************************************************************************
+    // Uncomment and fill in with your Parse credentials:
+    // [Parse setApplicationId:@"your_application_id" clientKey:@"your_client_key"];
+    //
+    // If you are using Facebook, uncomment and add your FacebookAppID to your bundle's plist as
+    // described here: https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/
+    // [PFFacebookUtils initializeFacebook];
+    // ****************************************************************************
+
+    // Parse information key
+    [Parse setApplicationId:@"T64QkYy5fwrsy25RqTHsgJzrIsbMr5ETMVGzi59m"
+                  clientKey:@"7mHpdHtddyomhfhDTaXKE7TVwtmvcIlcGbUZ10Ob"];
+    
+    // To track statistics around application opens
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     // Override point for customization after application launch.
     return YES;
 }
