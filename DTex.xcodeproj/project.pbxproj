@@ -1,0 +1,472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1912BAF819F0BF1000C4FB3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BAF719F0BF1000C4FB3C /* Foundation.framework */; };
+		1912BAFA19F0BF1000C4FB3C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BAF919F0BF1000C4FB3C /* CoreGraphics.framework */; };
+		1912BAFC19F0BF1000C4FB3C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BAFB19F0BF1000C4FB3C /* UIKit.framework */; };
+		1912BB0219F0BF1000C4FB3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1912BB0019F0BF1000C4FB3C /* InfoPlist.strings */; };
+		1912BB0419F0BF1000C4FB3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB0319F0BF1000C4FB3C /* main.m */; };
+		1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */; };
+		1912BB0B19F0BF1000C4FB3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1912BB0919F0BF1000C4FB3C /* Main.storyboard */; };
+		1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB0D19F0BF1000C4FB3C /* DTexViewController.m */; };
+		1912BB1019F0BF1000C4FB3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1912BB0F19F0BF1000C4FB3C /* Images.xcassets */; };
+		1912BB1719F0BF1000C4FB3C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BB1619F0BF1000C4FB3C /* XCTest.framework */; };
+		1912BB1819F0BF1000C4FB3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BAF719F0BF1000C4FB3C /* Foundation.framework */; };
+		1912BB1919F0BF1000C4FB3C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BAFB19F0BF1000C4FB3C /* UIKit.framework */; };
+		1912BB2119F0BF1000C4FB3C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1912BB1F19F0BF1000C4FB3C /* InfoPlist.strings */; };
+		1912BB2319F0BF1000C4FB3C /* DTexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB2219F0BF1000C4FB3C /* DTexTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1912BB1A19F0BF1000C4FB3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1912BAEC19F0BF0F00C4FB3C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1912BAF319F0BF1000C4FB3C;
+			remoteInfo = DTex;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1912BAF419F0BF1000C4FB3C /* DTex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DTex.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1912BAF719F0BF1000C4FB3C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1912BAF919F0BF1000C4FB3C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1912BAFB19F0BF1000C4FB3C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1912BAFF19F0BF1000C4FB3C /* DTex-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DTex-Info.plist"; sourceTree = "<group>"; };
+		1912BB0119F0BF1000C4FB3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1912BB0319F0BF1000C4FB3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1912BB0519F0BF1000C4FB3C /* DTex-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DTex-Prefix.pch"; sourceTree = "<group>"; };
+		1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTexAppDelegate.h; sourceTree = "<group>"; };
+		1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTexAppDelegate.m; sourceTree = "<group>"; };
+		1912BB0A19F0BF1000C4FB3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1912BB0C19F0BF1000C4FB3C /* DTexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTexViewController.h; sourceTree = "<group>"; };
+		1912BB0D19F0BF1000C4FB3C /* DTexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTexViewController.m; sourceTree = "<group>"; };
+		1912BB0F19F0BF1000C4FB3C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1912BB1519F0BF1000C4FB3C /* DTexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DTexTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1912BB1619F0BF1000C4FB3C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1912BB1E19F0BF1000C4FB3C /* DTexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DTexTests-Info.plist"; sourceTree = "<group>"; };
+		1912BB2019F0BF1000C4FB3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1912BB2219F0BF1000C4FB3C /* DTexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DTexTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1912BAF119F0BF1000C4FB3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BAFA19F0BF1000C4FB3C /* CoreGraphics.framework in Frameworks */,
+				1912BAFC19F0BF1000C4FB3C /* UIKit.framework in Frameworks */,
+				1912BAF819F0BF1000C4FB3C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1912BB1219F0BF1000C4FB3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BB1719F0BF1000C4FB3C /* XCTest.framework in Frameworks */,
+				1912BB1919F0BF1000C4FB3C /* UIKit.framework in Frameworks */,
+				1912BB1819F0BF1000C4FB3C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1912BAEB19F0BF0F00C4FB3C = {
+			isa = PBXGroup;
+			children = (
+				1912BAFD19F0BF1000C4FB3C /* DTex */,
+				1912BB1C19F0BF1000C4FB3C /* DTexTests */,
+				1912BAF619F0BF1000C4FB3C /* Frameworks */,
+				1912BAF519F0BF1000C4FB3C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1912BAF519F0BF1000C4FB3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1912BAF419F0BF1000C4FB3C /* DTex.app */,
+				1912BB1519F0BF1000C4FB3C /* DTexTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1912BAF619F0BF1000C4FB3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1912BAF719F0BF1000C4FB3C /* Foundation.framework */,
+				1912BAF919F0BF1000C4FB3C /* CoreGraphics.framework */,
+				1912BAFB19F0BF1000C4FB3C /* UIKit.framework */,
+				1912BB1619F0BF1000C4FB3C /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1912BAFD19F0BF1000C4FB3C /* DTex */ = {
+			isa = PBXGroup;
+			children = (
+				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
+				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
+				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				1912BB0C19F0BF1000C4FB3C /* DTexViewController.h */,
+				1912BB0D19F0BF1000C4FB3C /* DTexViewController.m */,
+				1912BB0F19F0BF1000C4FB3C /* Images.xcassets */,
+				1912BAFE19F0BF1000C4FB3C /* Supporting Files */,
+			);
+			path = DTex;
+			sourceTree = "<group>";
+		};
+		1912BAFE19F0BF1000C4FB3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1912BAFF19F0BF1000C4FB3C /* DTex-Info.plist */,
+				1912BB0019F0BF1000C4FB3C /* InfoPlist.strings */,
+				1912BB0319F0BF1000C4FB3C /* main.m */,
+				1912BB0519F0BF1000C4FB3C /* DTex-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1912BB1C19F0BF1000C4FB3C /* DTexTests */ = {
+			isa = PBXGroup;
+			children = (
+				1912BB2219F0BF1000C4FB3C /* DTexTests.m */,
+				1912BB1D19F0BF1000C4FB3C /* Supporting Files */,
+			);
+			path = DTexTests;
+			sourceTree = "<group>";
+		};
+		1912BB1D19F0BF1000C4FB3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1912BB1E19F0BF1000C4FB3C /* DTexTests-Info.plist */,
+				1912BB1F19F0BF1000C4FB3C /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1912BAF319F0BF1000C4FB3C /* DTex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1912BB2619F0BF1000C4FB3C /* Build configuration list for PBXNativeTarget "DTex" */;
+			buildPhases = (
+				1912BAF019F0BF1000C4FB3C /* Sources */,
+				1912BAF119F0BF1000C4FB3C /* Frameworks */,
+				1912BAF219F0BF1000C4FB3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DTex;
+			productName = DTex;
+			productReference = 1912BAF419F0BF1000C4FB3C /* DTex.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1912BB1419F0BF1000C4FB3C /* DTexTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1912BB2919F0BF1000C4FB3C /* Build configuration list for PBXNativeTarget "DTexTests" */;
+			buildPhases = (
+				1912BB1119F0BF1000C4FB3C /* Sources */,
+				1912BB1219F0BF1000C4FB3C /* Frameworks */,
+				1912BB1319F0BF1000C4FB3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1912BB1B19F0BF1000C4FB3C /* PBXTargetDependency */,
+			);
+			name = DTexTests;
+			productName = DTexTests;
+			productReference = 1912BB1519F0BF1000C4FB3C /* DTexTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1912BAEC19F0BF0F00C4FB3C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DTex;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = CS378;
+				TargetAttributes = {
+					1912BB1419F0BF1000C4FB3C = {
+						TestTargetID = 1912BAF319F0BF1000C4FB3C;
+					};
+				};
+			};
+			buildConfigurationList = 1912BAEF19F0BF0F00C4FB3C /* Build configuration list for PBXProject "DTex" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1912BAEB19F0BF0F00C4FB3C;
+			productRefGroup = 1912BAF519F0BF1000C4FB3C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1912BAF319F0BF1000C4FB3C /* DTex */,
+				1912BB1419F0BF1000C4FB3C /* DTexTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1912BAF219F0BF1000C4FB3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BB1019F0BF1000C4FB3C /* Images.xcassets in Resources */,
+				1912BB0219F0BF1000C4FB3C /* InfoPlist.strings in Resources */,
+				1912BB0B19F0BF1000C4FB3C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1912BB1319F0BF1000C4FB3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BB2119F0BF1000C4FB3C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1912BAF019F0BF1000C4FB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
+				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
+				1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1912BB1119F0BF1000C4FB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1912BB2319F0BF1000C4FB3C /* DTexTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1912BB1B19F0BF1000C4FB3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1912BAF319F0BF1000C4FB3C /* DTex */;
+			targetProxy = 1912BB1A19F0BF1000C4FB3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1912BB0019F0BF1000C4FB3C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1912BB0119F0BF1000C4FB3C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1912BB0919F0BF1000C4FB3C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1912BB0A19F0BF1000C4FB3C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1912BB1F19F0BF1000C4FB3C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1912BB2019F0BF1000C4FB3C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1912BB2419F0BF1000C4FB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1912BB2519F0BF1000C4FB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1912BB2719F0BF1000C4FB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DTex/DTex-Prefix.pch";
+				INFOPLIST_FILE = "DTex/DTex-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1912BB2819F0BF1000C4FB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DTex/DTex-Prefix.pch";
+				INFOPLIST_FILE = "DTex/DTex-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1912BB2A19F0BF1000C4FB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DTex.app/DTex";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DTex/DTex-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DTexTests/DTexTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1912BB2B19F0BF1000C4FB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DTex.app/DTex";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DTex/DTex-Prefix.pch";
+				INFOPLIST_FILE = "DTexTests/DTexTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1912BAEF19F0BF0F00C4FB3C /* Build configuration list for PBXProject "DTex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1912BB2419F0BF1000C4FB3C /* Debug */,
+				1912BB2519F0BF1000C4FB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1912BB2619F0BF1000C4FB3C /* Build configuration list for PBXNativeTarget "DTex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1912BB2719F0BF1000C4FB3C /* Debug */,
+				1912BB2819F0BF1000C4FB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1912BB2919F0BF1000C4FB3C /* Build configuration list for PBXNativeTarget "DTexTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1912BB2A19F0BF1000C4FB3C /* Debug */,
+				1912BB2B19F0BF1000C4FB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1912BAEC19F0BF0F00C4FB3C /* Project object */;
+}
