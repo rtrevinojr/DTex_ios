@@ -39,6 +39,7 @@
 		1912BB4919F0C78C00C4FB3C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */; };
 		1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
 		1912BB4D19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
+		19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,8 @@
 		1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1912BB4A19F0C94800C4FB3C /* DTexBarsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarsTableViewController.h; sourceTree = "<group>"; };
 		1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarsTableViewController.m; sourceTree = "<group>"; };
+		19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarDetailViewController.h; sourceTree = "<group>"; };
+		19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */,
+				19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */,
 				1912BB4A19F0C94800C4FB3C /* DTexBarsTableViewController.h */,
 				1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */,
 				1912BB0C19F0BF1000C4FB3C /* DTexViewController.h */,
@@ -324,6 +329,7 @@
 			files = (
 				1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */,
 				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
+				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */,
 			);
@@ -541,6 +547,7 @@
 				1912BB2819F0BF1000C4FB3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1912BB2919F0BF1000C4FB3C /* Build configuration list for PBXNativeTarget "DTexTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +556,7 @@
 				1912BB2B19F0BF1000C4FB3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
