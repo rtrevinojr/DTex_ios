@@ -39,6 +39,8 @@
 		1912BB4919F0C78C00C4FB3C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */; };
 		1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
 		1912BB4D19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
+		19634ECE19F1FB0600B7935A /* DTexEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ECD19F1FB0600B7935A /* DTexEventsTableViewController.m */; };
+		19634ED119F2007A00B7935A /* DTexBarEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */; };
 		19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +89,10 @@
 		1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1912BB4A19F0C94800C4FB3C /* DTexBarsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarsTableViewController.h; sourceTree = "<group>"; };
 		1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarsTableViewController.m; sourceTree = "<group>"; };
+		19634ECC19F1FB0600B7935A /* DTexEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexEventsTableViewController.h; sourceTree = "<group>"; };
+		19634ECD19F1FB0600B7935A /* DTexEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexEventsTableViewController.m; sourceTree = "<group>"; };
+		19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarEventsTableViewController.h; sourceTree = "<group>"; };
+		19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarEventsTableViewController.m; sourceTree = "<group>"; };
 		19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarDetailViewController.h; sourceTree = "<group>"; };
 		19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +184,10 @@
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */,
+				19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */,
+				19634ECC19F1FB0600B7935A /* DTexEventsTableViewController.h */,
+				19634ECD19F1FB0600B7935A /* DTexEventsTableViewController.m */,
 				19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */,
 				19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */,
 				1912BB4A19F0C94800C4FB3C /* DTexBarsTableViewController.h */,
@@ -332,6 +342,8 @@
 				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */,
+				19634ECE19F1FB0600B7935A /* DTexEventsTableViewController.m in Sources */,
+				19634ED119F2007A00B7935A /* DTexBarEventsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
