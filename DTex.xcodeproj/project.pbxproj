@@ -42,6 +42,11 @@
 		19634ECE19F1FB0600B7935A /* DTexEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ECD19F1FB0600B7935A /* DTexEventsTableViewController.m */; };
 		19634ED119F2007A00B7935A /* DTexBarEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */; };
 		19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */; };
+		305A5F8E19F56D5500B65E88 /* DTexTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305A5F8D19F56D5500B65E88 /* DTexTabBarController.m */; };
+		305A5F9519F5744200B65E88 /* UITabBarContacts_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A5F9419F5744200B65E88 /* UITabBarContacts_2x.png */; };
+		305A5F9719F574AF00B65E88 /* UITabBarFavorites_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A5F9619F574AF00B65E88 /* UITabBarFavorites_2x.png */; };
+		308876AC19F5B0A700388258 /* Streamline-Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 308876AB19F5B0A700388258 /* Streamline-Icons.png */; };
+		308876AE19F5B18A00388258 /* compass-direction-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 308876AD19F5B18A00388258 /* compass-direction-7.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +100,12 @@
 		19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarEventsTableViewController.m; sourceTree = "<group>"; };
 		19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarDetailViewController.h; sourceTree = "<group>"; };
 		19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarDetailViewController.m; sourceTree = "<group>"; };
+		305A5F8C19F56D5500B65E88 /* DTexTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexTabBarController.h; sourceTree = "<group>"; };
+		305A5F8D19F56D5500B65E88 /* DTexTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexTabBarController.m; sourceTree = "<group>"; };
+		305A5F9419F5744200B65E88 /* UITabBarContacts_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarContacts_2x.png; sourceTree = "<group>"; };
+		305A5F9619F574AF00B65E88 /* UITabBarFavorites_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarFavorites_2x.png; sourceTree = "<group>"; };
+		308876AB19F5B0A700388258 /* Streamline-Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Streamline-Icons.png"; sourceTree = "<group>"; };
+		308876AD19F5B18A00388258 /* compass-direction-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-direction-7.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,9 +192,15 @@
 		1912BAFD19F0BF1000C4FB3C /* DTex */ = {
 			isa = PBXGroup;
 			children = (
+				308876AD19F5B18A00388258 /* compass-direction-7.png */,
+				308876AB19F5B0A700388258 /* Streamline-Icons.png */,
+				305A5F9419F5744200B65E88 /* UITabBarContacts_2x.png */,
+				305A5F9619F574AF00B65E88 /* UITabBarFavorites_2x.png */,
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				305A5F8C19F56D5500B65E88 /* DTexTabBarController.h */,
+				305A5F8D19F56D5500B65E88 /* DTexTabBarController.m */,
 				19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */,
 				19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */,
 				19634ECC19F1FB0600B7935A /* DTexEventsTableViewController.h */,
@@ -316,8 +333,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308876AE19F5B18A00388258 /* compass-direction-7.png in Resources */,
+				305A5F9519F5744200B65E88 /* UITabBarContacts_2x.png in Resources */,
 				1912BB1019F0BF1000C4FB3C /* Images.xcassets in Resources */,
 				1912BB0219F0BF1000C4FB3C /* InfoPlist.strings in Resources */,
+				308876AC19F5B0A700388258 /* Streamline-Icons.png in Resources */,
+				305A5F9719F574AF00B65E88 /* UITabBarFavorites_2x.png in Resources */,
 				1912BB0B19F0BF1000C4FB3C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +364,7 @@
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */,
 				19634ECE19F1FB0600B7935A /* DTexEventsTableViewController.m in Sources */,
+				305A5F8E19F56D5500B65E88 /* DTexTabBarController.m in Sources */,
 				19634ED119F2007A00B7935A /* DTexBarEventsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

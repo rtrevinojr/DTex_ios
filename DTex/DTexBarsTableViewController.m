@@ -29,7 +29,7 @@
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Bar_Name";
         
-        self.title = @"DTex_Bars";
+        self.title = @"Bars";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";

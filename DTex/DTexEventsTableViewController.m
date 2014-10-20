@@ -26,7 +26,7 @@
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Special";
         
-        self.title = @"DTex_Events";
+        self.title = @"Events";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -78,6 +78,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
