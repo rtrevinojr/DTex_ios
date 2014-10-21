@@ -51,24 +51,15 @@
      *  rtrevinojr:
      *  PFQueryTableViewController
      */
-    
-    
     PFQueryTableViewController * controller = [[PFQueryTableViewController alloc]
                                                initWithClassName:@"DTexBars"];
-    
     //DTexBarsTableViewController * mycontroller = [[DTexBarsTableViewController alloc] init];
-    
     DTexBarsTableViewController * mycontroller = [[DTexBarsTableViewController alloc] initWithClassName:@"DTexBars"];
     
-    /*
-     *  Replace rootViewController with *controller
-     *
-     
-     self.window.rootViewController = self.viewController;
-     [self.window makeKeyAndVisible];
-     
-     */
-    
+     // Replace rootViewController with *controller
+     //self.window.rootViewController = self.viewController;
+     //[self.window makeKeyAndVisible];
+
     return YES;
     
     /*
@@ -205,9 +196,9 @@
 
 - (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+        NSLog(@"DTex successfully subscribed to push notifications on the broadcast channel.");
     } else {
-        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+        NSLog(@"DTex failed to subscribe to push notifications on the broadcast channel.");
     }
 }
 

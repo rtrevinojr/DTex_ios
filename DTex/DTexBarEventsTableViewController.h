@@ -10,4 +10,9 @@
 
 @interface DTexBarEventsTableViewController : PFQueryTableViewController
 
+@property (strong, nonatomic) PFObject * object;
+
+- (void) setBarSelection:(NSString*)name;
+
+
 @end

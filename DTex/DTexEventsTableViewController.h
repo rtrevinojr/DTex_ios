@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 
-@interface DTexEventsTableViewController : PFQueryTableViewController
+@interface DTexEventsTableViewController : PFQueryTableViewController <UISearchBarDelegate, UIGestureRecognizerDelegate>
+
 
 @end

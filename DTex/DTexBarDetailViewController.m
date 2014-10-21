@@ -8,19 +8,23 @@
 
 #import "DTexBarDetailViewController.h"
 
-@interface DTexBarDetailViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *label_barname;
+#import "DTexBarEventsTableViewController.h"
 
+
+@interface DTexBarDetailViewController ()
+
+@property (strong, nonatomic) NSString * BarName;
+
+@property (weak, nonatomic) IBOutlet UILabel *label_barname;
 @property (weak, nonatomic) IBOutlet UILabel *BarNameLabel;
-@property (weak, nonatomic) NSString * BarName;
 @property (weak, nonatomic) IBOutlet UILabel *AddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet UILabel *websiteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-
 //@property (strong, nonatomic) PFObject * exam;
 
 @end
+
 
 @implementation DTexBarDetailViewController
 
@@ -30,13 +34,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     PFObject * selection = _exam;
-    BarName = [selection objectForKey:@"Bar_Name"];
     
+    BarName = [selection objectForKey:@"Bar_Name"];
     _AddressLabel.text = [selection objectForKey:@"Address"];
     _phoneLabel.text = [selection objectForKey:@"Phone"];
     _websiteLabel.text = [selection objectForKey:@"Website"];
-    
-    
     
     NSLog(@"Bar Name = %@", BarName);
     
@@ -61,7 +63,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"drinkspecialsegue"]){
+        
+        // Capture the object (e.g. exam) the user has selected from the list
+        
+        [[segue destinationViewController] setBarSelection:BarName];
+        
+        DTexBarEventsTableViewController *detailViewController = [segue destinationViewController];
+        
+        NSLog(@"BAR SELECTION ---------------- %@", BarName);
+        
+        //NSLog(@"passing object through DTexBarDetailViewController =============== %@", detailViewController.object);
+        
+        //detailViewController.object = _exam;
+    }
 }
 
-
 @end
+

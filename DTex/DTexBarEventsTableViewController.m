@@ -8,7 +8,17 @@
 
 #import "DTexBarEventsTableViewController.h"
 
+#import "DTexBarEventTableViewCell.h"
+
 @interface DTexBarEventsTableViewController ()
+
+@property (strong, nonatomic) NSString * BarSelection;
+
+@property (weak, nonatomic) IBOutlet UILabel *BarCellBarNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *BarCellDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *BarCellSummaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *BarCellSpecialLabel;
+
 
 @end
 
@@ -21,52 +31,55 @@
         
         // The className to query on
         self.parseClassName = @"DTex_Events";
-        
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Special";
-        
         self.title = @"DTex_Events";
-        
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
-        
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
-        
         // Whether the built-in pagination is enabled
         self.paginationEnabled = YES;
-        
         // The number of objects to show per page
         self.objectsPerPage = 100;
     }
     return self;
 }
 
+- (void) setBarSelection:(NSString *)name
+{
+    _BarSelection = name;
+}
+
 /*
- 
  - (id)initWithStyle:(UITableViewStyle)style
  {
  self = [super initWithStyle:style];
  if (self) {
  // Custom the table
- 
  // The className to query on
  self.parseClassName = @"DTexBars";
- 
  // The key of the PFObject to display in the label of the default cell style
  self.textKey = @"Bar_Name";
- 
  // The title for this table in the Navigation Controller.
  self.title = @"DTexBars";
- 
  // Whether the built-in pull-to-refresh is enabled
  self.pullToRefreshEnabled = YES;
- 
  // Whether the built-in pagination is enabled
  self.paginationEnabled = YES;
- 
  // The number of objects to show per page
  self.objectsPerPage = 25;;
+ }
+ return self;
+ }
+ */
+
+/*
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+ {
+ self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+ if (self) {
+ // Custom initialization
  }
  return self;
  }
@@ -77,6 +90,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    PFObject * selection = _object;
+    
+    _BarCellBarNameLabel.text = [selection objectForKey:@"BarName"];
+    _BarCellDayLabel.text = [selection objectForKey:@"Day"];
+    _BarCellSummaryLabel.text = [selection objectForKey:@"Summary"];
+    _BarCellSpecialLabel.text = [selection objectForKey:@"Special"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -122,7 +142,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -130,16 +149,13 @@
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
     // This method is called every time objects are loaded from Parse via the PFQuery
 }
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
-    
     // This method is called before a PFQuery is fired to get more objects
 }
-
 
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
@@ -147,14 +163,15 @@
     
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
     
-    // [query setvalue:@"DTexBars" forkey:@"DTexBars"];
-    
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
+    NSLog(@"BAR SELECION ============= %@", _BarSelection);
+    
+    [query whereKey:@"Name" equalTo:_BarSelection];
     [query orderByAscending:@"Special"];
     
     return query;
@@ -165,16 +182,19 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"DTexBarEventCell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    DTexBarEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[DTexBarEventTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"Special"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Summary: %@", [object objectForKey:@"Summary"]];
+    cell.BarCellBarNameLabel.text = [object objectForKey:@"Name"];
+    
+    cell.BarCellSummaryLabel.text = [object objectForKey:@"Summary"];
+    cell.BarCellSpecialLabel.text = [object objectForKey:@"Special"];
+    cell.BarCellDayLabel.text = [object objectForKey:@"Day"];
     
     return cell;
 }
@@ -254,114 +274,14 @@
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    // Check that a new transition has been requested to the DetailViewController and prepares for it
-    if ([segue.identifier isEqualToString:@"viewsegue"]){
-        
-        // Capture the object (e.g. exam) the user has selected from the list
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *object = [self.objects objectAtIndex:indexPath.row];
-        
-        //DTexBarDetailViewController *detailViewController = [segue destinationViewController];
-        //detailViewController.exam = object;
-        
-        // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
-        /*
-         UINavigationController *nav = [segue destinationViewController];
-         DTexBarDetailViewController *detailViewController = (DTexBarDetailViewController *) nav.topViewController;
-         detailViewController.exam = object;
-         */
-    }
-    
-    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
-    
-    NSLog(@"PrepareForSegue Method..............................");
-    if ([segue.identifier isEqualToString:@"addsegue"]) {
-        NSLog(@"prepareForSegue: addsegue");
-    }
-    else if ([segue.identifier isEqualToString:@"viewsegue"]) {
-        
-        NSLog(@"View Detail Segue");
-        
-        NSIndexPath * indexPath = [self.tableView indexPathForSelectedRow];
-        
-        //HW5DataModel * dm = [self.contactList objectAtIndex:indexPath.row];
-        
-        /*
-         PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-         testObject[@"foo"] = @"bar";
-         [testObject saveInBackground];
-         */
-        
-        PFObject *viewObject = [PFObject objectWithClassName:@"DTexBars"];
-        
-        
-        NSLog(@"segue detail");
-        /*
-         NSLog(@"Segue name = %@", viewObject.getName);
-         NSLog(@"Segue phone = %@", dm.getPhone);
-         NSLog(@"Segue city = %@", dm.getCity);
-         NSLog(@"Segue state = %@", dm.getState);
-         */
-        
-        //DTexBar * bar = viewObject.address;
-        
-        //[[segue destinationViewController] setNameView:[dm getName]];
-        
-        NSString * name = @"rene";
-        
-        //[[segue destinationViewController] setBarName:name];
-        
-        /*
-         [[segue destinationViewController] setPhoneView:[dm getPhone]];
-         [[segue destinationViewController] setCityView:[dm getCity]];
-         [[segue destinationViewController] setStateView:[dm getState]];
-         */
-        
-    }
-    
-    NSLog(@"End of method: prepareForSegue");
 }
-
 
 @end
 
-
-/*
- 
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
- {
- self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
- if (self) {
- // Custom initialization
- NSLog(@"initWithNibName Constructor");
- 
- }
- return self;
- }
- 
- 
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
- 
- @end
- 
- */

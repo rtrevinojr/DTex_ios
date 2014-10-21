@@ -29,6 +29,11 @@
     [testObject saveInBackground];
      */
     
+    /*
+    CFAbsoluteTime at = CFAbsoluteTimeGetCurrent();
+    CFTimeZoneRef tz = CFTimeZoneCopySystem();
+    SInt32 WeekdayNumber = CFAbsoluteTimeGetDayOfWeek(at, tz);
+    */
     
 }
 

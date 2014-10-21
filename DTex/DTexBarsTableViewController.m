@@ -29,7 +29,7 @@
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Bar_Name";
         
-        self.title = @"DTex_Bars";
+        self.title = @"Bars";
         
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
@@ -81,6 +81,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -289,7 +291,6 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
      
-     
      NSLog(@"PrepareForSegue Method..............................");
      if ([segue.identifier isEqualToString:@"addsegue"]) {
          NSLog(@"prepareForSegue: addsegue");
@@ -297,11 +298,7 @@
      else if ([segue.identifier isEqualToString:@"viewsegue"]) {
          
          NSLog(@"View Detail Segue");
-         
          NSIndexPath * indexPath = [self.tableView indexPathForSelectedRow];
-         
-         //HW5DataModel * dm = [self.contactList objectAtIndex:indexPath.row];
-         
          /*
           PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
           testObject[@"foo"] = @"bar";
@@ -310,32 +307,14 @@
          
          PFObject *viewObject = [PFObject objectWithClassName:@"DTexBars"];
          
-         
-         NSLog(@"segue detail");
-         /*
-         NSLog(@"Segue name = %@", viewObject.getName);
-         NSLog(@"Segue phone = %@", dm.getPhone);
-         NSLog(@"Segue city = %@", dm.getCity);
-         NSLog(@"Segue state = %@", dm.getState);
-          */
-         
          //DTexBar * bar = viewObject.address;
-         
-         //[[segue destinationViewController] setNameView:[dm getName]];
-         
+       
          NSString * name = @"rene";
          
          [[segue destinationViewController] setBarName:name];
          
-         /*
-         [[segue destinationViewController] setPhoneView:[dm getPhone]];
-         [[segue destinationViewController] setCityView:[dm getCity]];
-         [[segue destinationViewController] setStateView:[dm getState]];
-          */
-         
      }
-     
-     NSLog(@"End of method: prepareForSegue");
+
  }
 
 
@@ -343,7 +322,6 @@
 
 
 /*
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -354,18 +332,4 @@
     }
     return self;
 }
-
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
-
-@end
-
 */
