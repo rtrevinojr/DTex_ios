@@ -9,7 +9,7 @@
 #import "DTexEventsTableViewController.h"
 
 @interface DTexEventsTableViewController ()
-
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @end
 
 
@@ -79,12 +79,51 @@
 {
     [super viewDidLoad];
     
+    _searchBar.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(uiWasTapped)];
+    tap.delegate = self;
+    [self.view addGestureRecognizer:tap];
+    
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    UITextField *searchField = [_searchBar valueForKey:@"_searchField"];
+    searchField.textColor = [UIColor whiteColor];
+    [searchField setValue:[UIColor orangeColor] forKeyPath:@"_placeholderLabel.textColor"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([_searchBar isFirstResponder])
+        return YES;
+    
+    // UITableViewCellContentView => UITableViewCellScrollView => UITableViewCell
+    if([touch.view.superview.superview isKindOfClass:[UITableViewCell class]]) {
+        return NO;
+    }
+    
+    // UITableViewCellContentView => UITableViewCell
+    if([touch.view.superview isKindOfClass:[UITableViewCell class]]) {
+        return NO;
+    }
+    if ([touch.view isKindOfClass:[UIControl class]])
+        return NO;
+    return YES;
+}
+
+-(void)uiWasTapped
+{
+    [_searchBar resignFirstResponder];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
 }
 
 - (void)viewDidUnload
@@ -101,6 +140,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    //[_searchBar becomeFirstResponder];
     [super viewDidAppear:animated];
 }
 
