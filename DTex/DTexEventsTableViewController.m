@@ -12,21 +12,12 @@
 
 @interface DTexEventsTableViewController ()
 
-
 @property (weak, nonatomic) IBOutlet UITableViewCell *DTexEventCell;
-
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
-@property (nonatomic) NSInteger weekdayNum;
-
 @property (weak, nonatomic) IBOutlet UIPickerView *DayPickerView;
-
-@property (strong, nonatomic) NSMutableArray * weekdayEnum;
-
-//@property (weak, nonatomic) IBOutlet UILabel *CellBarNameLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *CellDayLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *CellSummaryLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *CellSpecialLabel;
+@property (nonatomic) NSInteger weekdayNum;
+@property (strong, nonatomic) NSArray * weekdayEnum;
+@property NSInteger selectedPickerRow;
 
 @end
 
@@ -76,9 +67,7 @@
     }
     return self;
  }
- */
 
-/*
  - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
  {
  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -89,12 +78,30 @@
  }
  */
 
-- (int) getDayOfWeek
+- (NSInteger) getDayOfWeek
 {
     CFAbsoluteTime at = CFAbsoluteTimeGetCurrent();
     CFTimeZoneRef tz = CFTimeZoneCopySystem();
     SInt32 WeekdayNumber = CFAbsoluteTimeGetDayOfWeek(at, tz);
-    return WeekdayNumber;
+    return (NSInteger) WeekdayNumber;
+}
+
+- (NSString *) getDayOfWeekString:(NSInteger)daynum
+{
+    if (daynum == 0)
+        return @"Monday";
+    else if (daynum == 1)
+        return @"Tuesday";
+    else if (daynum == 2)
+        return @"Wednesday";
+    else if (daynum == 3)
+        return @"Thursday";
+    else if (daynum == 4)
+        return @"Friday";
+    else if (daynum == 5)
+        return @"Saturday";
+    else
+        return @"Sunday";
 }
 
 #pragma mark - View lifecycle
@@ -103,13 +110,37 @@
 {
     [super viewDidLoad];
     
+    /*
+    //_weekdayEnum = [NSArray arrayWithObjects:
+                        @"Monday", @"Tuesday", @"Wednesday",
+                        @"Thursday", @"Friday", @"Saturday", @"Sunday",
+                        nil];
+     */
+    
+    _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
+    
+    //_selectedPickerRow = [self getDayOfWeek];
+    _selectedPickerRow = 1;
+    
+    NSLog(@"GetDayOfWeek////////////////////");
+    /*
+    _DayPickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
+    _DayPickerView.delegate = self;
+    _DayPickerView.showsSelectionIndicator =YES;
+    _DayPickerView.backgroundColor = [UIColor clearColor];
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(-3.14/2);
+    rotate = CGAffineTransformScale(rotate, 0.25, 2.0);
+    [self.DayPickerView setTransform:rotate];
+    [self.view addSubview:_DayPickerView];
+     */
+    
     _DayPickerView.delegate = self;
     _DayPickerView.dataSource = self;
     _DayPickerView.showsSelectionIndicator = YES;
     _DayPickerView.opaque = NO;
     
-    _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Sunday",@"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", nil];
     
+    /*
     _searchBar.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(uiWasTapped)];
     tap.delegate = self;
@@ -121,6 +152,8 @@
     searchField.textColor = [UIColor whiteColor];
     [searchField setValue:[UIColor orangeColor] forKeyPath:@"_placeholderLabel.textColor"];
     
+     */
+     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -141,6 +174,43 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return _weekdayEnum.count;
+}
+
+/*
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+    CGRect rect = CGRectMake(0, 0, 120, 80);
+    UILabel *label = [[UILabel alloc]initWithFrame:rect];
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(3.14/2);
+    rotate = CGAffineTransformScale(rotate, 0.25, 2.0);
+    [label setTransform:rotate];
+    label.text = [_weekdayEnum objectAtIndex:row];
+    label.font = [UIFont systemFontOfSize:22.0];
+    //label.textAlignment = UITextAlignmentCenter;
+    label.numberOfLines = 2;
+    //label.lineBreakMode = UILineBreakModeWordWrap;
+    label.backgroundColor = [UIColor clearColor];
+    label.clipsToBounds = YES;
+    return label ;
+}
+*/
+
+- (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    
+    _selectedPickerRow = row;
+    NSString * rowvalue = [NSString stringWithFormat:@"%ld", (long)_selectedPickerRow];
+    
+    //[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    
+    [self loadObjects];
+    
+    [self.tableView reloadData];
+    
+    [self queryForTable];
+    
+    
+    
+    NSLog(@"Selected Picker Row :::::::::::::::::: %@", rowvalue);
+    
 }
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
@@ -179,6 +249,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -233,7 +304,25 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
+    //NSString * dayString = [_weekdayEnum objectAtIndex:_selectedPickerRow];
+    NSString * dayString = [self getDayOfWeekString:_selectedPickerRow];
+    
+    NSLog(@"Day String::::::::::::::::: %@", dayString);
+    
+    [query whereKey:@"Day" equalTo:dayString];
     [query orderByAscending:@"Special"];
+    
+    /*
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        [self.tableView reloadData];
+    }];
+     */
+    
+    //[self loadObjects];
+    
+    //[self loadView];
+    
     return query;
 }
 
@@ -255,11 +344,10 @@
 }
 
  // Override if you need to change the ordering of objects in the table.
-/*
  - (PFObject *)objectAtIndex:(NSIndexPath *)indexPath {
-     return [objects objectAtIndex:indexPath.row];
+     return [_weekdayEnum objectAtIndex:indexPath.row];
  }
- */
+ 
 
 #pragma mark - Table view data source
 
