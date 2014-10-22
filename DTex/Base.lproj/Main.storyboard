@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TVR-FC-b4w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TVR-FC-b4w">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Tex Tab Bar Controller-->
@@ -28,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-1134" y="473"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Tex Bars Table View Controller - Root View Controller-->
         <scene sceneID="TVQ-TQ-mho">
             <objects>
                 <tableViewController id="pyS-wt-Eas" customClass="DTexBarsTableViewController" sceneMemberID="viewController">
@@ -139,7 +138,7 @@
             </objects>
             <point key="canvasLocation" x="1094" y="135"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Tex Bar Events Table View Controller - Root View Controller-->
         <scene sceneID="cIe-fJ-SgT">
             <objects>
                 <tableViewController id="ZCg-gu-Qyq" customClass="DTexBarEventsTableViewController" sceneMemberID="viewController">
@@ -170,7 +169,7 @@
             </objects>
             <point key="canvasLocation" x="1618" y="130"/>
         </scene>
-        <!--Title-->
+        <!--View Controller - Title-->
         <scene sceneID="FjI-EI-1xi">
             <objects>
                 <viewController id="y77-BT-ivK" sceneMemberID="viewController">
@@ -229,7 +228,7 @@
             </objects>
             <point key="canvasLocation" x="-101" y="1795"/>
         </scene>
-        <!--Profile-->
+        <!--View Controller - Profile-->
         <scene sceneID="n1g-VI-9xS">
             <objects>
                 <viewController id="8xq-73-fd2" sceneMemberID="viewController">
@@ -270,7 +269,7 @@
             </objects>
             <point key="canvasLocation" x="-883" y="1779"/>
         </scene>
-        <!--Bars-->
+        <!--Navigation Controller - Bars-->
         <scene sceneID="cip-j5-4hO">
             <objects>
                 <navigationController id="jSS-G2-3Mk" sceneMemberID="viewController">
@@ -290,7 +289,7 @@
             </objects>
             <point key="canvasLocation" x="3" y="119"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Tex Events Table View Controller - Root View Controller-->
         <scene sceneID="ZsU-p4-ZaP">
             <objects>
                 <tableViewController id="awh-Gj-1g5" customClass="DTexEventsTableViewController" sceneMemberID="viewController">
@@ -337,7 +336,7 @@
             </objects>
             <point key="canvasLocation" x="648" y="-607"/>
         </scene>
-        <!--Events-->
+        <!--Navigation Controller - Events-->
         <scene sceneID="1pl-GB-6r6">
             <objects>
                 <navigationController id="UQ3-Cy-F7L" sceneMemberID="viewController">
@@ -364,10 +363,10 @@
         <image name="UITabBarFavorites_2x.png" width="25" height="24"/>
         <image name="compass-direction-7.png" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
