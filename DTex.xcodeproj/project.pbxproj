@@ -39,6 +39,7 @@
 		1912BB4919F0C78C00C4FB3C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */; };
 		1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
 		1912BB4D19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */; };
+		192A9F141A11AFDA0050E28B /* DTexMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 192A9F131A11AFDA0050E28B /* DTexMapViewController.m */; };
 		1958D9C119F6C67F003D3BC2 /* DTexTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1958D9C019F6C67F003D3BC2 /* DTexTabBarViewController.m */; };
 		1958D9C619F6C8F3003D3BC2 /* compass-direction-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958D9C219F6C8F3003D3BC2 /* compass-direction-7.png */; };
 		1958D9C719F6C8F3003D3BC2 /* Streamline-Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 1958D9C319F6C8F3003D3BC2 /* Streamline-Icons.png */; };
@@ -96,6 +97,8 @@
 		1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1912BB4A19F0C94800C4FB3C /* DTexBarsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarsTableViewController.h; sourceTree = "<group>"; };
 		1912BB4B19F0C94800C4FB3C /* DTexBarsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarsTableViewController.m; sourceTree = "<group>"; };
+		192A9F121A11AFDA0050E28B /* DTexMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexMapViewController.h; sourceTree = "<group>"; };
+		192A9F131A11AFDA0050E28B /* DTexMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexMapViewController.m; sourceTree = "<group>"; };
 		1958D9BF19F6C67F003D3BC2 /* DTexTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexTabBarViewController.h; sourceTree = "<group>"; };
 		1958D9C019F6C67F003D3BC2 /* DTexTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexTabBarViewController.m; sourceTree = "<group>"; };
 		1958D9C219F6C8F3003D3BC2 /* compass-direction-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "compass-direction-7.png"; path = "../../Downloads/DTex Images/compass-direction-7.png"; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				192A9F121A11AFDA0050E28B /* DTexMapViewController.h */,
+				192A9F131A11AFDA0050E28B /* DTexMapViewController.m */,
 				19634ED219F25BDF00B7935A /* DTexEventTableViewCell.h */,
 				19634ED319F25BDF00B7935A /* DTexEventTableViewCell.m */,
 				19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */,
@@ -375,6 +380,7 @@
 				1958D9CC19F6D641003D3BC2 /* DTexBarEventTableViewCell.m in Sources */,
 				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
 				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
+				192A9F141A11AFDA0050E28B /* DTexMapViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				1912BB0819F0BF1000C4FB3C /* DTexAppDelegate.m in Sources */,
 				19634ED419F25BDF00B7935A /* DTexEventTableViewCell.m in Sources */,

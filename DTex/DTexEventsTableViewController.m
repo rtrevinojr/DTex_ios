@@ -42,6 +42,8 @@
         self.paginationEnabled = YES;
         // The number of objects to show per page
         self.objectsPerPage = 100;
+        
+        self.selectedPickerRow = [self getDayOfWeek];
     }
     return self;
 }
@@ -119,8 +121,10 @@
     
     _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
     
-    //_selectedPickerRow = [self getDayOfWeek];
-    _selectedPickerRow = 1;
+    NSLog(@"_____________________%ld", [self getDayOfWeek]);
+    
+    _selectedPickerRow = (NSInteger) [self getDayOfWeek];
+    //_selectedPickerRow = 1;
     
     NSLog(@"GetDayOfWeek////////////////////");
     /*
@@ -138,6 +142,10 @@
     _DayPickerView.dataSource = self;
     _DayPickerView.showsSelectionIndicator = YES;
     _DayPickerView.opaque = NO;
+    
+    NSInteger defaultrow = _selectedPickerRow - 1;
+    
+    [self.DayPickerView selectRow:defaultrow inComponent:0 animated:YES];
     
     
     /*
@@ -305,7 +313,12 @@
     }
     
     //NSString * dayString = [_weekdayEnum objectAtIndex:_selectedPickerRow];
-    NSString * dayString = [self getDayOfWeekString:_selectedPickerRow];
+    
+    NSInteger defaultrow = _selectedPickerRow;
+    
+    NSString * dayString = [self getDayOfWeekString:defaultrow];
+    
+    //NSLog(@"+++++++++++++++++++++ %@", _selectedPickerRow);
     
     NSLog(@"Day String::::::::::::::::: %@", dayString);
     
