@@ -13,6 +13,7 @@
 @property (strong, nonatomic) PFObject * object;
 
 - (void) setBarSelection:(NSString*)name;
+- (void) setBarFKeySelection:(NSNumber *) key;
 
 
 @end

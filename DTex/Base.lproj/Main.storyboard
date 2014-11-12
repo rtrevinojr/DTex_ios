@@ -120,6 +120,7 @@
                         <outlet property="AddressLabel" destination="Y8p-72-eiY" id="BTI-gw-vPr"/>
                         <outlet property="label_barname" destination="9pn-j0-tRq" id="IqO-KE-cQk"/>
                         <outlet property="locationLabel" destination="UfW-3f-jVH" id="T0g-gM-6RE"/>
+                        <outlet property="mapView" destination="zRD-Mu-0tu" id="BG8-0F-tGy"/>
                         <outlet property="phoneLabel" destination="I1w-lY-fKq" id="uVf-Yd-Rve"/>
                         <outlet property="websiteLabel" destination="oTv-gW-ou7" id="Xlo-rr-baF"/>
                     </connections>

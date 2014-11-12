@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Location not found 2</key>
+	<key>DTex would like to use your location!</key>
 	<string>NSLocationWhenInUseUsageDescription</string>
-	<key>Location not found</key>
+	<key>DTex would like to use your location</key>
 	<string>NSLocationAlwaysUsageDescription</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>

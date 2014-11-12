@@ -16,6 +16,9 @@
 //#import "ParseStarterProjectViewController.h"
 #import "DTexBarsTableViewController.h"
 
+#import "DTexMapViewController.h"
+
+
 @implementation DTexAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -10,7 +10,10 @@
 
 #import <Parse/Parse.h> 
 
-@interface DTexBarDetailViewController : UIViewController
+#import <MapKit/MapKit.h>
+
+
+@interface DTexBarDetailViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) PFObject * exam;
 

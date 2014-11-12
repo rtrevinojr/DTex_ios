@@ -13,6 +13,7 @@
 @interface DTexBarEventsTableViewController ()
 
 @property (strong, nonatomic) NSString * BarSelection;
+@property (strong, nonatomic) NSNumber * BarFKeySelection;
 
 @property (weak, nonatomic) IBOutlet UILabel *BarCellBarNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *BarCellDayLabel;
@@ -49,6 +50,10 @@
 - (void) setBarSelection:(NSString *)name
 {
     _BarSelection = name;
+}
+- (void) setBarFKeySelection:(NSNumber *)key
+{
+    _BarFKeySelection = key;
 }
 
 /*
@@ -170,8 +175,10 @@
     }
     
     NSLog(@"BAR SELECION ============= %@", _BarSelection);
+    NSLog(@"BAR FOREIGN KEY SELECTION ================ %@", _BarFKeySelection);
     
-    [query whereKey:@"Name" equalTo:_BarSelection];
+    //[query whereKey:@"Name" equalTo:_BarSelection];
+    [query whereKey:@"ID" equalTo:_BarFKeySelection];
     [query orderByAscending:@"Special"];
     
     return query;

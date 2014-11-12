@@ -12,7 +12,6 @@
 @interface DTexMapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
-
 @property (retain, nonatomic) CLLocationManager *locationManager;
 
 @end
