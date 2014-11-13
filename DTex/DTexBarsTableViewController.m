@@ -53,22 +53,16 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom the table
-        
         // The className to query on
         self.parseClassName = @"DTexBars";
-        
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Bar_Name";
-        
         // The title for this table in the Navigation Controller.
         self.title = @"DTexBars";
-        
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
-        
         // Whether the built-in pagination is enabled
         self.paginationEnabled = YES;
-        
         // The number of objects to show per page
         self.objectsPerPage = 25;;
     }
@@ -259,9 +253,6 @@
 {
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
-
-
-
 
  #pragma mark - Navigation
  

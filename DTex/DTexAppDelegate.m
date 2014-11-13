@@ -59,6 +59,8 @@
     //DTexBarsTableViewController * mycontroller = [[DTexBarsTableViewController alloc] init];
     DTexBarsTableViewController * mycontroller = [[DTexBarsTableViewController alloc] initWithClassName:@"DTexBars"];
     
+    DTexMapViewController * mapcontrol = [[DTexMapViewController alloc] init];
+    
      // Replace rootViewController with *controller
      //self.window.rootViewController = self.viewController;
      //[self.window makeKeyAndVisible];

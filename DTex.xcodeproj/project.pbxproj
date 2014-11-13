@@ -50,6 +50,7 @@
 		19634ED119F2007A00B7935A /* DTexBarEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */; };
 		19634ED419F25BDF00B7935A /* DTexEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19634ED319F25BDF00B7935A /* DTexEventTableViewCell.m */; };
 		19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */; };
+		19EFD0A71A13580D00C33C27 /* DTexMapAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EFD0A61A13580D00C33C27 /* DTexMapAnnotationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,8 @@
 		19634ED319F25BDF00B7935A /* DTexEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexEventTableViewCell.m; sourceTree = "<group>"; };
 		19D7C98819F11120004ADE83 /* DTexBarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarDetailViewController.h; sourceTree = "<group>"; };
 		19D7C98919F11120004ADE83 /* DTexBarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarDetailViewController.m; sourceTree = "<group>"; };
+		19EFD0A51A13580D00C33C27 /* DTexMapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexMapAnnotationView.h; sourceTree = "<group>"; };
+		19EFD0A61A13580D00C33C27 /* DTexMapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexMapAnnotationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
 				192A9F121A11AFDA0050E28B /* DTexMapViewController.h */,
 				192A9F131A11AFDA0050E28B /* DTexMapViewController.m */,
+				19EFD0A51A13580D00C33C27 /* DTexMapAnnotationView.h */,
+				19EFD0A61A13580D00C33C27 /* DTexMapAnnotationView.m */,
 				19634ED219F25BDF00B7935A /* DTexEventTableViewCell.h */,
 				19634ED319F25BDF00B7935A /* DTexEventTableViewCell.m */,
 				19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */,
@@ -379,6 +384,7 @@
 				1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */,
 				1958D9CC19F6D641003D3BC2 /* DTexBarEventTableViewCell.m in Sources */,
 				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
+				19EFD0A71A13580D00C33C27 /* DTexMapAnnotationView.m in Sources */,
 				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
 				192A9F141A11AFDA0050E28B /* DTexMapViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,

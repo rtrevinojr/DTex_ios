@@ -8,15 +8,18 @@
 
 #import "DTexMapViewController.h"
 
-#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#import "DTexBarDetailViewController.h"
 
+
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 
 @interface DTexMapViewController ()
 
-
+@property (strong, nonatomic) NSString * BarAnnotation;
 
 @end
+
 
 @implementation DTexMapViewController
 
@@ -26,16 +29,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
     mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
+    //[self.locationManager requestAlwaysAuthorization];
+    
 #ifdef __IPHONE_8_0
     if(IS_OS_8_OR_LATER) {
         // Use one or the other, not both. Depending on what you put in info.plist
-        [self.locationManager requestWhenInUseAuthorization];
-        //[self.locationManager requestAlwaysAuthorization];
+        //[self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
     }
 #endif
     [self.locationManager startUpdatingLocation];
@@ -45,6 +49,7 @@
     [mapView setZoomEnabled:YES];
     [mapView setScrollEnabled:YES];
 }
+
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -56,39 +61,58 @@
     
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    //region.center.latitude = self.locationManager.location.coordinate.latitude;
-    //region.center.longitude = self.locationManager.location.coordinate.longitude;
+    region.center.latitude = self.locationManager.location.coordinate.latitude;
+    region.center.longitude = self.locationManager.location.coordinate.longitude;
     
-    region.center.latitude = 30.266f;
-    region.center.longitude = -97.742;
+    //region.center.latitude = 30.266f;
+    //region.center.longitude = -97.742;
     
-    region.span.longitudeDelta = 0.005f;
-    region.span.longitudeDelta = 0.005f;
+    region.span.longitudeDelta = 0.115f;
+    region.span.longitudeDelta = 0.115f;
     [mapView setRegion:region animated:YES];
-    
-
-    /*
+ 
     // Add an annotation
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    //MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     //point.coordinate = userLocation.coordinate;
-    
 
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = 30.266f;
-    coordinate.longitude = -97.742f;
+    //CLLocationCoordinate2D coordinate;
+    //coordinate.latitude = 30.266f;
+    //coordinate.longitude = -97.742f;
     
-    point.coordinate = coordinate;
+    //point.coordinate = coordinate;
      
-    point.title = @"Where am I?";
-    point.subtitle = @"I'm here!!!";
+    //point.title = @"Where am I?";
+    //point.subtitle = @"I'm here!!!";
     
+    //[self.mapView addAnnotation:point];
     
-    
-    [self.mapView addAnnotation:point];
-     
-     */
+}
 
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
+    annotationView.canShowCallout = YES;
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"viewsegue" sender:view];
+    
+   
+    
+    //DTexBarDetailViewController *detailViewController = [segue destinationViewController];
+    //detailViewController.exam = object;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        self.mapView.showsUserLocation = YES;
+    }
 }
 
 /*
@@ -111,6 +135,7 @@
 - (NSString *)deviceAlt {
     return [NSString stringWithFormat:@"%f", self.locationManager.location.altitude];
 }
+
 
 /*
 -(void)viewDidAppear:(BOOL)animated {
@@ -140,26 +165,26 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    /*
   
-    CLLocationDistance distance = 1000;
-    CLLocationCoordinate2D myCoordinate;
-    myCoordinate.latitude = 13.04016;
-    myCoordinate.longitude = 80.243044;
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(myCoordinate,
+    //CLLocationDistance distance = 1000;
+    //CLLocationCoordinate2D myCoordinate;
+    //myCoordinate.latitude = 13.04016;
+    //myCoordinate.longitude = 80.243044;
+    
+    //MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(myCoordinate,
                                                                    distance,
                                                                    distance);
     
-    MKCoordinateRegion adjusted_region = [self.mapView regionThatFits:region];
-    [self.mapView setRegion:adjusted_region animated:YES];
-    
- 
-
+    //MKCoordinateRegion adjusted_region = [self.mapView regionThatFits:region];
+    //[self.mapView setRegion:adjusted_region animated:YES];
+     
+     */
     
 /*
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
-    
-    
+ 
     // Add an annotation
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     //point.coordinate = userLocation.coordinate;
@@ -183,7 +208,6 @@
      MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
      //point.coordinate = userLocation.coordinate;
      
-     
      CLLocationCoordinate2D coordinate;
      coordinate.latitude = 30.266f;
      coordinate.longitude = -97.742f;
@@ -192,8 +216,6 @@
      
      point.title = @"Where am I?";
      point.subtitle = @"I'm here!!!";
-     
-     
      
      [self.mapView addAnnotation:point];
     
@@ -272,14 +294,47 @@
  */
 
 
-/*
+
 #pragma mark - Navigation
 
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    // Check that a new transition has been requested to the DetailViewController and prepares for it
+    if ([segue.identifier isEqualToString:@"viewsegue"]){
+        
+        // Capture the object (e.g. exam) the user has selected from the list
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
+        [query getObjectInBackgroundWithId:@"DJlo4DCZCi" block:^(PFObject *bar, NSError *error) {
+            // Do something with the returned PFObject in the gameScore variable.
+            NSLog(@"%@", bar);
+        }];
+        
+        //DTexBarDetailViewController *detailViewController = [segue destinationViewController];
+        //detailViewController.exam = object;
+        
+        // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
+        /*
+         UINavigationController *nav = [segue destinationViewController];
+         DTexBarDetailViewController *detailViewController = (DTexBarDetailViewController *) nav.topViewController;
+         detailViewController.exam = object;
+         */
+    }
+    
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    NSLog(@"PrepareForSegue Method..............................");
+    if ([segue.identifier isEqualToString:@"addsegue"]) {
+        NSLog(@"prepareForSegue: addsegue");
+    }
+
+    
 }
-*/
+
 
 @end
