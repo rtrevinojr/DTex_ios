@@ -21,9 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_barname;
 @property (weak, nonatomic) IBOutlet UILabel *BarNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AddressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet UILabel *websiteLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIButton *webButton;
 //@property (strong, nonatomic) PFObject * exam;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -51,8 +50,6 @@
     BarKey = [selection objectForKey:@"ID"];
     
     _AddressLabel.text = [selection objectForKey:@"Address"];
-    _phoneLabel.text = [selection objectForKey:@"Phone"];
-    _websiteLabel.text = [selection objectForKey:@"Website"];
     
     _BarLatitude = [selection objectForKey:@"latitude"];
     _BarLongitude = [selection objectForKey:@"longitude"];
@@ -109,6 +106,22 @@
     [self.mapView addAnnotation:point];
     [self.mapView selectAnnotation:point animated:YES];
  
+}
+
+//telprompt will return to your app after they finish the call
+- (IBAction)callTouched:(id)sender {
+    PFObject * selection = _exam;
+    NSString *temp = [NSString stringWithFormat:@"%@%@", @"telprompt://", [selection objectForKey:@"Phone"]];
+    NSLog(@"%@", temp);
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:temp]];
+}
+//websites must start with http://
+- (IBAction)webTouched:(id)sender {
+    PFObject * selection = _exam;
+
+    NSURL *url = [[ NSURL alloc ] initWithString: [selection objectForKey:@"Website"]];
+    [[UIApplication sharedApplication] openURL:url];
+    NSLog(@"%@\n", [url description]);
 }
 
 /*
