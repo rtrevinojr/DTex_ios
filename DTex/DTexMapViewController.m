@@ -27,6 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.title = @"Map";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
