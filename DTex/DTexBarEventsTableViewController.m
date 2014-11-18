@@ -174,8 +174,8 @@
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
     
-    NSLog(@"BAR SELECION ============= %@", _BarSelection);
-    NSLog(@"BAR FOREIGN KEY SELECTION ================ %@", _BarFKeySelection);
+    NSLog(@"BAR SELECION = %@", _BarSelection);
+    NSLog(@"BAR FOREIGN KEY SELECTION = %@", _BarFKeySelection);
     
     //[query whereKey:@"Name" equalTo:_BarSelection];
     [query whereKey:@"ID" equalTo:_BarFKeySelection];
@@ -198,7 +198,6 @@
     
     // Configure the cell
     cell.BarCellBarNameLabel.text = [object objectForKey:@"Name"];
-    
     cell.BarCellSummaryLabel.text = [object objectForKey:@"Summary"];
     cell.BarCellSpecialLabel.text = [object objectForKey:@"Special"];
     cell.BarCellDayLabel.text = [object objectForKey:@"Day"];

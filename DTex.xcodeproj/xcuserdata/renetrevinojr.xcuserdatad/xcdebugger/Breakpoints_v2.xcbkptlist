@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DTex/DTexEventsTableViewController.m"
-            timestampString = "435634120.859424"
+            timestampString = "437557117.484653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "-initWithCoder:"
             landmarkType = "5">
          </BreakpointContent>

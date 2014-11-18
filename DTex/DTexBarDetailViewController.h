@@ -18,5 +18,8 @@
 @property (strong, nonatomic) PFObject * exam;
 
 - (void) setBarName:(NSString*) name;
+- (void) setBarKey:(NSNumber*) key;
+
+- (void) setBarObject:(PFObject*)obj;
 
 @end

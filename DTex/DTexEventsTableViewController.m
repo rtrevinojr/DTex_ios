@@ -25,6 +25,8 @@
 @implementation DTexEventsTableViewController
 
 - (id)initWithCoder:(NSCoder *)aCoder {
+    
+    
     self = [super initWithCoder:aCoder];
     if (self) {
         // Customize the table
@@ -112,6 +114,8 @@
 {
     [super viewDidLoad];
     
+    [self.tabBarController setDelegate:self];
+    
     /*
     //_weekdayEnum = [NSArray arrayWithObjects:
                         @"Monday", @"Tuesday", @"Wednesday",
@@ -121,12 +125,12 @@
     
     _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
     
-    NSLog(@"_____________________%ld", [self getDayOfWeek]);
+    NSLog(@"Day: %ld", [self getDayOfWeek]);
     
     _selectedPickerRow = (NSInteger) [self getDayOfWeek];
     //_selectedPickerRow = 1;
     
-    NSLog(@"GetDayOfWeek////////////////////");
+    NSLog(@"GetDayOfWeek: ");
     /*
     _DayPickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     _DayPickerView.delegate = self;
@@ -215,9 +219,7 @@
     
     [self queryForTable];
     
-    
-    
-    NSLog(@"Selected Picker Row :::::::::::::::::: %@", rowvalue);
+    NSLog(@"Selected Picker Row: %@", rowvalue);
     
 }
 
@@ -313,14 +315,11 @@
     }
     
     //NSString * dayString = [_weekdayEnum objectAtIndex:_selectedPickerRow];
-    
     NSInteger defaultrow = _selectedPickerRow;
-    
     NSString * dayString = [self getDayOfWeekString:defaultrow];
     
-    //NSLog(@"+++++++++++++++++++++ %@", _selectedPickerRow);
-    
-    NSLog(@"Day String::::::::::::::::: %@", dayString);
+    //NSLog(@"Selected Picker Row: %@", _selectedPickerRow);
+    NSLog(@"Day String: %@", dayString);
     
     [query whereKey:@"Day" equalTo:dayString];
     [query orderByAscending:@"Special"];
@@ -333,7 +332,6 @@
      */
     
     //[self loadObjects];
-    
     //[self loadView];
     
     return query;
@@ -428,6 +426,15 @@
     else if ([segue.identifier isEqualToString:@"viewsegue"]) {
         NSIndexPath * indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *viewObject = [PFObject objectWithClassName:@"DTexBars"];
+    }
+}
+
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if ([viewController isKindOfClass:[UINavigationController class]])
+    {
+        [(UINavigationController*)viewController popToRootViewControllerAnimated:NO];
     }
 }
 

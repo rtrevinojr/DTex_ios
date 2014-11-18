@@ -36,8 +36,6 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     
-    //[self.locationManager requestAlwaysAuthorization];
-    
 #ifdef __IPHONE_8_0
     if(IS_OS_8_OR_LATER) {
         // Use one or the other, not both. Depending on what you put in info.plist
@@ -103,12 +101,8 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    [self performSegueWithIdentifier:@"viewsegue" sender:view];
+    [self performSegueWithIdentifier:@"mapselect" sender:view];
     
-   
-    
-    //DTexBarDetailViewController *detailViewController = [segue destinationViewController];
-    //detailViewController.exam = object;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -138,27 +132,6 @@
 - (NSString *)deviceAlt {
     return [NSString stringWithFormat:@"%f", self.locationManager.location.altitude];
 }
-
-
-/*
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    
-    self.locationManager.distanceFilter = kCLDistanceFilterNone; //Whenever we move
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
-    //NSLog(@"%@", [self deviceLocation]);
-    
-    //View Area
-    MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    region.center.latitude = self.locationManager.location.coordinate.latitude;
-    region.center.longitude = self.locationManager.location.coordinate.longitude;
-    region.span.longitudeDelta = 0.005f;
-    region.span.longitudeDelta = 0.005f;
-    [mapView setRegion:region animated:YES];
-    
-}
- */
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -260,41 +233,6 @@
 }
 */
 
-/*
-- (void)requestAlwaysAuthorization
-{
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    
-    // If the status is denied or only granted for when in use, display an alert
-    if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied) {
-        NSString *title;
-        title = (status == kCLAuthorizationStatusDenied) ? @"Location services are off" : @"Background location is not enabled";
-        NSString *message = @"To use background location you must turn on 'Always' in the Location Services Settings";
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                            message:message
-                                                           delegate:self
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:@"Settings", nil];
-        [alertView show];
-    }
-    // The user has not enabled any location services. Request background authorization.
-    else if (status == kCLAuthorizationStatusNotDetermined) {
-        [self.locationManager requestAlwaysAuthorization];
-    }
-}
- */
-
-/*
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        // Send the user to the Settings for this app
-        NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-        [[UIApplication sharedApplication] openURL:settingsURL];
-    }
-}
- */
 
 
 
@@ -306,35 +244,69 @@
 {
     
     // Check that a new transition has been requested to the DetailViewController and prepares for it
-    if ([segue.identifier isEqualToString:@"viewsegue"]){
+    if ([segue.identifier isEqualToString:@"mapselect"]){
         
         // Capture the object (e.g. exam) the user has selected from the list
         
         PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
+        
+        NSLog(@"prepare for segue........");
+        
+        //__block PFObject * obj = nil;
+
+        /*
+        
         [query getObjectInBackgroundWithId:@"DJlo4DCZCi" block:^(PFObject *bar, NSError *error) {
             // Do something with the returned PFObject in the gameScore variable.
-            NSLog(@"%@", bar);
+            NSLog(@"ERROR = %@", error);
+            NSLog(@"----------------%@", bar);
+            
+            NSLog(@"Bar Name: %@", bar[@"Bar_Name"]);
+            NSLog(@"Bar id: %@", bar[@"ID"]);
+            
+            NSString * name = [bar objectForKey:@"Bar_Name"];
+            
+            NSLog(@"test = %@", name);
+            
+            DTexBarDetailViewController *detailViewController = [segue destinationViewController];
+            detailViewController.exam = bar;
+            
+            NSString * barname = obj[@"Bar_Name"];
+            NSNumber * barid = obj[@"ID"];
+            
+            [[segue destinationViewController] setBarObject:bar];
+            
+            [[segue destinationViewController] setBarName:barname];
+            [[segue destinationViewController] setBarKey:barid];
+            
+            obj = bar;
+            
         }];
-        
-        //DTexBarDetailViewController *detailViewController = [segue destinationViewController];
-        //detailViewController.exam = object;
-        
-        // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
-        /*
-         UINavigationController *nav = [segue destinationViewController];
-         DTexBarDetailViewController *detailViewController = (DTexBarDetailViewController *) nav.topViewController;
-         detailViewController.exam = object;
+         
          */
+        
+        //NSLog(@"testttttttt ========== %@", obj);
+        
+        
+        PFObject * obj = [query getObjectWithId:@"DJlo4DCZCi"];
+        
+        NSLog(@"testttttttt ========== %@", obj);
+        
+        
+        DTexBarDetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.exam = obj;
+        
+        /*
+        
+        NSString * barname = obj[@"Bar_Name"];
+        NSNumber * barid = obj[@"ID"];
+        
+        [[segue destinationViewController] setBarName:barname];
+        [[segue destinationViewController] setBarKey:barid];
+         */
+ 
     }
-    
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    NSLog(@"PrepareForSegue Method..............................");
-    if ([segue.identifier isEqualToString:@"addsegue"]) {
-        NSLog(@"prepareForSegue: addsegue");
-    }
+
 
     
 }

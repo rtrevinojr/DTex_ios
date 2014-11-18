@@ -15,6 +15,8 @@
 
 @interface DTexBarDetailViewController ()
 
+//@property (strong, nonatomic) PFObject * exam;
+
 @property (strong, nonatomic) NSString * BarName;
 @property (strong, nonatomic) NSNumber * BarKey;
 
@@ -23,14 +25,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *AddressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *webButton;
-//@property (strong, nonatomic) PFObject * exam;
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
 @property (retain, nonatomic) CLLocationManager *locationManager;
 
 @property (nonatomic) NSNumber * BarLatitude;
 @property (nonatomic) NSNumber * BarLongitude;
-
 
 @end
 
@@ -54,7 +56,7 @@
     _BarLatitude = [selection objectForKey:@"latitude"];
     _BarLongitude = [selection objectForKey:@"longitude"];
     
-    NSLog(@"Bar Name = %@", BarName);
+    NSLog(@"00000Bar Name = %@", BarName);
     _BarNameLabel.text = BarName;
     _label_barname.text = BarName;
  
@@ -92,14 +94,10 @@
     // Add an annotation
     MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
     //point.coordinate = userLocation.coordinate;
-    
-    
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = [_BarLatitude floatValue];
     coordinate.longitude = [_BarLongitude floatValue];
-    
     point.coordinate = coordinate;
-    
     point.title = BarName;
     point.subtitle = _AddressLabel.text;
     
@@ -108,6 +106,19 @@
  
 }
 
+/*
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.view addSubview:self.mapView];
+    [self.view sendSubviewToBack:self.mapView];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.mapView removeFromSuperview];
+}
+ */
+
 //telprompt will return to your app after they finish the call
 - (IBAction)callTouched:(id)sender {
     PFObject * selection = _exam;
@@ -115,6 +126,7 @@
     NSLog(@"%@", temp);
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:temp]];
 }
+
 //websites must start with http://
 - (IBAction)webTouched:(id)sender {
     PFObject * selection = _exam;
@@ -127,12 +139,10 @@
 /*
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    
      CLLocationDistance distance = 1000;
      CLLocationCoordinate2D myCoordinate;
      myCoordinate.latitude = [_BarLatitude floatValue];
      myCoordinate.longitude = [_BarLongitude floatValue];
-    
      MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(myCoordinate,
      distance,
      distance);
@@ -140,20 +150,15 @@
      MKCoordinateRegion adjusted_region = [self.mapView regionThatFits:region];
      [self.mapView setRegion:adjusted_region animated:YES];
 
- 
- 
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
-    
-    
+    // MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
+    // [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+
     // Add an annotation
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = userLocation.coordinate;
-    point.title = @"Where am I?";
-    point.subtitle = @"I'm here!!!";
-    
-    [self.mapView addAnnotation:point];
-    
+    // MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    // point.coordinate = userLocation.coordinate;
+    // point.title = @"Where am I?";
+    // point.subtitle = @"I'm here!!!";
+    // [self.mapView addAnnotation:point];
 }
 */
 
@@ -162,13 +167,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void) setBarObject:(PFObject*) obj
+{
+    _exam = obj;
+}
 - (void) setBarName:(NSString *) name
 {
     BarName = name;
 }
-- (void) setBarKey:(NSNumber *)BarKey {
-    BarKey = BarKey;
+- (void) setBarKey:(NSNumber *)key {
+    BarKey = key;
 }
 
 - (NSString *)deviceLocation {
@@ -194,11 +202,7 @@
     if ([segue.identifier isEqualToString:@"drinkspecialsegue"]){
         [[segue destinationViewController] setBarSelection:BarName];
         [[segue destinationViewController] setBarFKeySelection:BarKey];
-        
-        DTexBarEventsTableViewController *detailViewController = [segue destinationViewController];
-    
-        NSLog(@"BAR SELECTION ---------------- %@", BarName);
-        //detailViewController.object = _exam;
+        NSLog(@"Bar Name Selection: %@", BarName);
     }
 }
 

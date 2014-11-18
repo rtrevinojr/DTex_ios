@@ -25,7 +25,7 @@
         
         // The className to query on
         self.parseClassName = @"DTexBars";
-        
+    
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Bar_Name";
         
@@ -47,7 +47,6 @@
 }
 
 /*
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -146,21 +145,14 @@
 - (PFQuery *)queryForTable {
     
     PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    
-    // [query setvalue:@"DTexBars" forkey:@"DTexBars"];
-    
     // If no objects are loaded in memory, we look to the cache first to fill the table
     // and then subsequently do a query against the network.
     if ([self.objects count] == 0) {
         query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     }
-    
     [query orderByAscending:@"Bar_Name"];
-    
     return query;
 }
-
-
 
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
@@ -259,7 +251,6 @@
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
-     
      // Check that a new transition has been requested to the DetailViewController and prepares for it
      if ([segue.identifier isEqualToString:@"viewsegue"]){
          
@@ -277,35 +268,6 @@
          detailViewController.exam = object;
           */
      }
-     
-     
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     
-     NSLog(@"PrepareForSegue Method..............................");
-     if ([segue.identifier isEqualToString:@"addsegue"]) {
-         NSLog(@"prepareForSegue: addsegue");
-     }
-     else if ([segue.identifier isEqualToString:@"viewsegue"]) {
-         
-         NSLog(@"View Detail Segue");
-         NSIndexPath * indexPath = [self.tableView indexPathForSelectedRow];
-         /*
-          PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-          testObject[@"foo"] = @"bar";
-          [testObject saveInBackground];
-          */
-         
-         PFObject *viewObject = [PFObject objectWithClassName:@"DTexBars"];
-         
-         //DTexBar * bar = viewObject.address;
-       
-         NSString * name = @"rene";
-         
-         [[segue destinationViewController] setBarName:name];
-         
-     }
-
  }
 
 
