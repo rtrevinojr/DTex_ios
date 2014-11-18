@@ -71,36 +71,51 @@
     region.span.longitudeDelta = 0.115f;
     region.span.longitudeDelta = 0.115f;
     [mapView setRegion:region animated:YES];
- 
-    // Add an annotation
-    //MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    //point.coordinate = userLocation.coordinate;
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
+    
+    NSArray * barlst = [query findObjects];
+    
+    for (PFObject * obj in barlst) {
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    
+        CLLocationCoordinate2D coordinate;
+        NSNumber * lat = [obj objectForKey:@"latitude"];
+        NSNumber * lng = [obj objectForKey:@"longitude"];
+        coordinate.latitude = [lat floatValue];
+        coordinate.longitude = [[obj objectForKey:@"longitude"] floatValue];
+        point.coordinate = coordinate;
+        point.title = [obj objectForKey:@"Bar_Name"];
+        point.subtitle = [obj objectForKey:@"Address"];
+        
+        [self.mapView addAnnotation:point];
+    }
 
-    //CLLocationCoordinate2D coordinate;
-    //coordinate.latitude = 30.266f;
-    //coordinate.longitude = -97.742f;
-    
-    //point.coordinate = coordinate;
-     
-    //point.title = @"Where am I?";
-    //point.subtitle = @"I'm here!!!";
-    
-    //[self.mapView addAnnotation:point];
     
 }
 
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
-    annotationView.canShowCallout = YES;
-    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     
-    return annotationView;
+    if (![annotation isKindOfClass:[MKUserLocation class]]) {
+    
+        MKAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"loc"];
+        annotationView.canShowCallout = YES;
+        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    
+        return annotationView;
+    }
+    return nil;
 }
+
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
+    
+    _BarAnnotation = view.annotation.title;
+    
     [self performSegueWithIdentifier:@"mapselect" sender:view];
     
 }
@@ -250,60 +265,16 @@
         
         PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
         
-        NSLog(@"prepare for segue........");
+        NSString * BarName = _BarAnnotation;
         
-        //__block PFObject * obj = nil;
-
-        /*
+        [query whereKey:@"Bar_Name" equalTo:BarName];
         
-        [query getObjectInBackgroundWithId:@"DJlo4DCZCi" block:^(PFObject *bar, NSError *error) {
-            // Do something with the returned PFObject in the gameScore variable.
-            NSLog(@"ERROR = %@", error);
-            NSLog(@"----------------%@", bar);
-            
-            NSLog(@"Bar Name: %@", bar[@"Bar_Name"]);
-            NSLog(@"Bar id: %@", bar[@"ID"]);
-            
-            NSString * name = [bar objectForKey:@"Bar_Name"];
-            
-            NSLog(@"test = %@", name);
-            
-            DTexBarDetailViewController *detailViewController = [segue destinationViewController];
-            detailViewController.exam = bar;
-            
-            NSString * barname = obj[@"Bar_Name"];
-            NSNumber * barid = obj[@"ID"];
-            
-            [[segue destinationViewController] setBarObject:bar];
-            
-            [[segue destinationViewController] setBarName:barname];
-            [[segue destinationViewController] setBarKey:barid];
-            
-            obj = bar;
-            
-        }];
-         
-         */
-        
-        //NSLog(@"testttttttt ========== %@", obj);
-        
-        
-        PFObject * obj = [query getObjectWithId:@"DJlo4DCZCi"];
-        
-        NSLog(@"testttttttt ========== %@", obj);
-        
-        
+        PFObject * obj = [query getFirstObject];
+        //PFObject * obj = [query getObjectWithId:@"DJlo4DCZCi"];
+    
         DTexBarDetailViewController *detailViewController = [segue destinationViewController];
         detailViewController.exam = obj;
-        
-        /*
-        
-        NSString * barname = obj[@"Bar_Name"];
-        NSNumber * barid = obj[@"ID"];
-        
-        [[segue destinationViewController] setBarName:barname];
-        [[segue destinationViewController] setBarKey:barid];
-         */
+
  
     }
 
