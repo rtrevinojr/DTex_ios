@@ -62,8 +62,16 @@
     
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    region.center.latitude = self.locationManager.location.coordinate.latitude;
-    region.center.longitude = self.locationManager.location.coordinate.longitude;
+    
+    //region.center.latitude = self.locationManager.location.coordinate.latitude;
+    //region.center.longitude = self.locationManager.location.coordinate.longitude;
+    
+    
+    // UT Tower Coordinates
+    // latitude = 30.28565
+    // longitude = -97.73921
+    region.center.latitude = 30.28565;
+    region.center.longitude = -97.73921;
     
     //region.center.latitude = 30.266f;
     //region.center.longitude = -97.742;
@@ -122,9 +130,9 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
-    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        self.mapView.showsUserLocation = YES;
-    }
+//    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+//        self.mapView.showsUserLocation = YES;
+//    }
 }
 
 /*
