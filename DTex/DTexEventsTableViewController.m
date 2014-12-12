@@ -10,6 +10,9 @@
 
 #import "DTexEventTableViewCell.h"
 
+#import "DTexBarDetailViewController.h"
+
+
 @interface DTexEventsTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *DTexEventCell;
@@ -404,10 +407,39 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    
+    // Check that a new transition has been requested to the DetailViewController and prepares for it
+    if ([segue.identifier isEqualToString:@"eventsegue"]) {
+        
+        // Capture the object (e.g. exam) the user has selected from the list
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        PFObject *object = [self.objects objectAtIndex:indexPath.row];
+        
+        
+        
+        NSString * bar = object[@"Name"];
+        
+        NSLog(@"bar string = %@", bar);
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
+        
+        
+        [query whereKey:@"Bar_Name" equalTo:bar];
+        //[query orderByAscending:@"Special"];
+        
+        
+        DTexBarDetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.exam = [query getFirstObject];
+    }
+    
     // Check that a new transition has been requested to the DetailViewController and prepares for it
     if ([segue.identifier isEqualToString:@"viewsegue"]) {
         // Capture the object (e.g. exam) the user has selected from the list
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        // BarName = [selection objectForKey:@"Bar_Name"];
+        
+        
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
 
         // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
@@ -417,16 +449,7 @@
          detailViewController.exam = object;
          */
     }
-    
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"addsegue"]) {
-        NSLog(@"prepareForSegue: addsegue");
-    }
-    else if ([segue.identifier isEqualToString:@"viewsegue"]) {
-        NSIndexPath * indexPath = [self.tableView indexPathForSelectedRow];
-        PFObject *viewObject = [PFObject objectWithClassName:@"DTexBars"];
-    }
+
 }
 
 
