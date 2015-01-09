@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_barname;
 @property (weak, nonatomic) IBOutlet UILabel *BarNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *AddressLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIButton *webButton;
 

@@ -27,15 +27,17 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 
-//@property (weak, nonatomic) IBOutlet UIButton *backDayBtn;
-
-//@property (weak, nonatomic) IBOutlet UIButton *forwardDayBtn;
-
+@property (weak, nonatomic) IBOutlet UIButton *leftDayBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightDayBtn;
 
 
 
 //- (IBAction)backDayButton:(id)sender;
 //- (IBAction)forwardDayButton:(id)sender;
+- (IBAction)backDayListener:(id)sender;
+
+- (IBAction)forwardDayListener:(id)sender;
+
 
 
 @end
@@ -425,5 +427,29 @@
  */
 
 
+- (IBAction)backDayListener:(id)sender {
+    
+    NSLog(@"back Day Listener");
+    
+    _selectedPickerRow -= 1;
+    _dayLabel.text = [self getDayOfWeekString:_selectedPickerRow];
+    
+    [self loadObjects];
+}
+
+- (IBAction)forwardDayListener:(id)sender {
+    
+    NSLog(@"forward Day Button");
+    
+    _selectedPickerRow += 1;
+    
+    _dayLabel.text = [self getDayOfWeekString:_selectedPickerRow];
+    
+    [self loadObjects];
+    
+    //[self.tableView reloadData];
+    
+    //[self queryForTable];
+}
 @end
 

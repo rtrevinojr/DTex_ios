@@ -364,6 +364,9 @@
                                                     <color key="titleColor" red="0.74901960779999999" green="0.3411764706" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="backDayListener:" destination="awh-Gj-1g5" eventType="touchUpInside" id="kpf-TX-vfj"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                         <barButtonItem width="217" style="plain" systemItem="fixedSpace" id="nM4-jE-kQD"/>
@@ -375,12 +378,15 @@
                                                     <color key="titleColor" red="0.74901960779999999" green="0.3411764706" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="forwardDayListener:" destination="awh-Gj-1g5" eventType="touchUpInside" id="LmN-qA-RKg"/>
+                                                </connections>
                                             </button>
                                         </barButtonItem>
                                     </items>
                                 </toolbar>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nrp-OZ-6Nf">
-                                    <rect key="frame" x="118" y="55" width="85" height="21"/>
+                                    <rect key="frame" x="109" y="55" width="103" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.74901960779999999" green="0.3411764706" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -441,6 +447,8 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="aGf-PS-Pn8"/>
                     <connections>
                         <outlet property="dayLabel" destination="nrp-OZ-6Nf" id="Yqz-C6-Iav"/>
+                        <outlet property="leftDayBtn" destination="i2o-7J-EbD" id="ygi-Jr-esf"/>
+                        <outlet property="rightDayBtn" destination="saM-Z4-HjY" id="UQg-fW-eFM"/>
                         <outlet property="searchEventBar" destination="yuh-xn-KRP" id="pAe-1C-IUm"/>
                     </connections>
                 </tableViewController>
