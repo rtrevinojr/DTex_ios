@@ -16,11 +16,27 @@
 @interface DTexEventsTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *DTexEventCell;
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-@property (weak, nonatomic) IBOutlet UIPickerView *DayPickerView;
-@property (nonatomic) NSInteger weekdayNum;
+
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+//@property (weak, nonatomic) IBOutlet UIPickerView *DayPickerView;
+//@property (nonatomic) NSInteger weekdayNum;
 @property (strong, nonatomic) NSArray * weekdayEnum;
 @property NSInteger selectedPickerRow;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchEventBar;
+
+@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
+
+//@property (weak, nonatomic) IBOutlet UIButton *backDayBtn;
+
+//@property (weak, nonatomic) IBOutlet UIButton *forwardDayBtn;
+
+
+
+
+//- (IBAction)backDayButton:(id)sender;
+//- (IBAction)forwardDayButton:(id)sender;
+
 
 @end
 
@@ -53,37 +69,6 @@
     return self;
 }
 
-/*
- - (id)initWithStyle:(UITableViewStyle)style
- {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom the table
-        // The className to query on
-        self.parseClassName = @"DTexBars";
-        // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"Bar_Name";
-        // The title for this table in the Navigation Controller.
-        self.title = @"DTexBars";
-        // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = YES;
-        // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
-        // The number of objects to show per page
-        self.objectsPerPage = 25;
-    }
-    return self;
- }
-
- - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
- {
- self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
- if (self) {
- // Custom initialization
- }
- return self;
- }
- */
 
 - (NSInteger) getDayOfWeek
 {
@@ -96,19 +81,23 @@
 - (NSString *) getDayOfWeekString:(NSInteger)daynum
 {
     if (daynum == 0)
-        return @"Monday";
-    else if (daynum == 1)
-        return @"Tuesday";
-    else if (daynum == 2)
-        return @"Wednesday";
-    else if (daynum == 3)
-        return @"Thursday";
-    else if (daynum == 4)
-        return @"Friday";
-    else if (daynum == 5)
-        return @"Saturday";
-    else
         return @"Sunday";
+    else if (daynum == 1)
+        return @"Monday";
+    else if (daynum == 2)
+        return @"Tuesday";
+    else if (daynum == 3)
+        return @"Wednesday";
+    else if (daynum == 4)
+        return @"Thursday";
+    else if (daynum == 5)
+        return @"Friday";
+    else if (daynum == 6)
+        return @"Saturday";
+    else if (daynum == 7)
+        return @"Sunday";
+    else
+        return @"Everyday";
 }
 
 #pragma mark - View lifecycle
@@ -119,21 +108,16 @@
     
     [self.tabBarController setDelegate:self];
     
-    /*
-    //_weekdayEnum = [NSArray arrayWithObjects:
-                        @"Monday", @"Tuesday", @"Wednesday",
-                        @"Thursday", @"Friday", @"Saturday", @"Sunday",
-                        nil];
-     */
     
-    _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
+    _weekdayEnum = [[NSMutableArray alloc] initWithObjects:@"Sunday", @"Monday",@"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Everyday", nil];
     
     NSLog(@"Day: %ld", [self getDayOfWeek]);
     
     _selectedPickerRow = (NSInteger) [self getDayOfWeek];
-    //_selectedPickerRow = 1;
     
-    NSLog(@"GetDayOfWeek: ");
+    _dayLabel.text = [self getDayOfWeekString:[self getDayOfWeek]];
+    
+
     /*
     _DayPickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     _DayPickerView.delegate = self;
@@ -145,14 +129,16 @@
     [self.view addSubview:_DayPickerView];
      */
     
+    /*
     _DayPickerView.delegate = self;
     _DayPickerView.dataSource = self;
     _DayPickerView.showsSelectionIndicator = YES;
     _DayPickerView.opaque = NO;
+     */
     
-    NSInteger defaultrow = _selectedPickerRow - 1;
+    //NSInteger defaultrow = _selectedPickerRow;
     
-    [self.DayPickerView selectRow:defaultrow inComponent:0 animated:YES];
+    //[self.DayPickerView selectRow:defaultrow inComponent:0 animated:YES];
     
     
     /*
@@ -191,23 +177,7 @@
     return _weekdayEnum.count;
 }
 
-/*
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
-    CGRect rect = CGRectMake(0, 0, 120, 80);
-    UILabel *label = [[UILabel alloc]initWithFrame:rect];
-    CGAffineTransform rotate = CGAffineTransformMakeRotation(3.14/2);
-    rotate = CGAffineTransformScale(rotate, 0.25, 2.0);
-    [label setTransform:rotate];
-    label.text = [_weekdayEnum objectAtIndex:row];
-    label.font = [UIFont systemFontOfSize:22.0];
-    //label.textAlignment = UITextAlignmentCenter;
-    label.numberOfLines = 2;
-    //label.lineBreakMode = UILineBreakModeWordWrap;
-    label.backgroundColor = [UIColor clearColor];
-    label.clipsToBounds = YES;
-    return label ;
-}
-*/
+
 
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
@@ -230,6 +200,7 @@
     return [_weekdayEnum objectAtIndex:row];
 }
 
+/*
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     if ([_searchBar isFirstResponder])
@@ -258,6 +229,7 @@
 {
     [searchBar resignFirstResponder];
 }
+ */
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -363,37 +335,7 @@
  }
  
 
-#pragma mark - Table view data source
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-    // Delete the row from the data source
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
- }
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
- }
-*/
 
 #pragma mark - Table view delegate
 
@@ -460,6 +402,27 @@
         [(UINavigationController*)viewController popToRootViewControllerAnimated:NO];
     }
 }
+
+
+/*
+- (IBAction)backDayButton:(id)sender {
+}
+
+- (IBAction)forwardDayButton:(id)sender {
+    
+    NSLog(@"forward Day Button");
+    
+    _selectedPickerRow += 1;
+    
+    _dayLabel.text = [self getDayOfWeekString:[self getDayOfWeek]];
+    
+    [self loadObjects];
+    
+    [self.tableView reloadData];
+    
+    [self queryForTable];
+}
+ */
 
 
 @end
