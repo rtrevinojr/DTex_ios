@@ -10,8 +10,12 @@
 
 #import "DTexBarDetailViewController.h"
 
+#import "DTexBarTableViewCell.h"
+
 
 @interface DTexBarsTableViewController ()
+
+@property (weak, nonatomic) IBOutlet DTexBarTableViewCell *DTexBarCell;
 
 @end
 
@@ -76,6 +80,8 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -157,18 +163,33 @@
 // Override to customize the look of a cell representing an object. The default is to display
 // a UITableViewCellStyleDefault style cell with the label being the first key in the object.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"DTexBarCell";
+  
+    DTexBarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[DTexBarTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+
+    cell.CellBarNameLabel.text = [object objectForKey:@"Bar_Name"];
+    cell.CellBarAddressLabel.text = [object objectForKey:@"Address"];
+    cell.CellBarAreaLabel.text = [object objectForKey:@"Area"];
+
+    NSNumber *cellbar_rating = [object objectForKey:@"Rating"];
+    NSString * rating_str = [cellbar_rating stringValue];
+    rating_str = [rating_str stringByAppendingString:@" Likes"];
     
-    // Configure the cell
-    cell.textLabel.text = [object objectForKey:@"Bar_Name"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Address: %@", [object objectForKey:@"Address"]];
+    [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
+    
+    cell.CellIsLiked = NO;
     
     return cell;
+}
+
+
+- (IBAction)likeBarBtn:(id)sender {
+    
+    
 }
 
 
@@ -243,7 +264,58 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    //Retrieve the selected Category
+    PFObject *obj = [self.objects objectAtIndex:indexPath.row];
+    
+    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    DTexBarTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    BOOL isLiked = cell.CellIsLiked;
+    
+    if (isLiked) {
+        
+        NSNumber * like_cnt = [obj objectForKey:@"Rating"];
+        int cnt = [like_cnt integerValue];
+        cnt -= 1;
+        
+        like_cnt = [NSNumber numberWithInt:cnt];
+        
+        [obj setObject:like_cnt forKey:@"Rating"];
+        
+        NSNumber *cellbar_rating = [obj objectForKey:@"Rating"];
+        NSString * rating_str = [cellbar_rating stringValue];
+        rating_str = [rating_str stringByAppendingString:@" Likes"];
+        
+        [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
+        
+        cell.CellIsLiked = NO;
+        
+    }
+    else {
+        
+        NSNumber * like_cnt = [obj objectForKey:@"Rating"];
+        int cnt = [like_cnt integerValue];
+
+        like_cnt = [NSNumber numberWithInt:cnt + 1];
+        
+        [obj setObject:like_cnt forKey:@"Rating"];
+        
+        NSNumber *cellbar_rating = [obj objectForKey:@"Rating"];
+        NSString * rating_str = [cellbar_rating stringValue];
+        rating_str = [rating_str stringByAppendingString:@" Likes"];
+        
+        [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
+        
+        cell.CellIsLiked = YES;
+        
+    }
+    
+    
+    
+    
 }
 
  #pragma mark - Navigation

@@ -11,11 +11,9 @@
 @interface DTexEventTableViewCell ()
 
 //@property (weak, nonatomic) IBOutlet UILabel *CellBarNameLabel;
-
 //@property (weak, nonatomic) IBOutlet UILabel *CellSummaryLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *CellSpecialLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *CellDayLabel;
-
 
 @end
 

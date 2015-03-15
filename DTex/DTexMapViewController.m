@@ -30,11 +30,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"Map";
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+    
     
 #ifdef __IPHONE_8_0
     if(IS_OS_8_OR_LATER) {

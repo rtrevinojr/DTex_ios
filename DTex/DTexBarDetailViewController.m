@@ -46,6 +46,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //self.view.window.bounds = CGRectMake(0, 50, self.view.window.frame.size.width, self.view.window.frame.size.height);
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    //self.navigationController.wantsFullScreenLayout;
+    
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
+   
+    self.extendedLayoutIncludesOpaqueBars = YES;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
+
+    self.navigationController.navigationBar.translucent = NO;
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    //self.setBackgroundColor:[UIColor whiteColor];
+    
     // Do any additional setup after loading the view.
     PFObject * selection = _exam;
     

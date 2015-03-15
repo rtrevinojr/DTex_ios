@@ -46,8 +46,7 @@
 @implementation DTexEventsTableViewController
 
 - (id)initWithCoder:(NSCoder *)aCoder {
-    
-    
+
     self = [super initWithCoder:aCoder];
     if (self) {
         // Customize the table
@@ -120,6 +119,7 @@
     _dayLabel.text = [self getDayOfWeekString:[self getDayOfWeek]];
     
 
+
     /*
     _DayPickerView = [[UIPickerView alloc] initWithFrame:CGRectZero];
     _DayPickerView.delegate = self;
@@ -139,9 +139,7 @@
      */
     
     //NSInteger defaultrow = _selectedPickerRow;
-    
     //[self.DayPickerView selectRow:defaultrow inComponent:0 animated:YES];
-    
     
     /*
     _searchBar.delegate = self;
@@ -179,8 +177,6 @@
     return _weekdayEnum.count;
 }
 
-
-
 - (void)pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     
     _selectedPickerRow = row;
@@ -189,9 +185,7 @@
     //[self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
     [self loadObjects];
-    
     [self.tableView reloadData];
-    
     [self queryForTable];
     
     NSLog(@"Selected Picker Row: %@", rowvalue);
@@ -203,24 +197,6 @@
 }
 
 /*
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
-    if ([_searchBar isFirstResponder])
-        return YES;
-    
-    // UITableViewCellContentView => UITableViewCellScrollView => UITableViewCell
-    if([touch.view.superview.superview isKindOfClass:[UITableViewCell class]]) {
-        return NO;
-    }
-    
-    // UITableViewCellContentView => UITableViewCell
-    if([touch.view.superview isKindOfClass:[UITableViewCell class]]) {
-        return NO;
-    }
-    if ([touch.view isKindOfClass:[UIControl class]])
-        return NO;
-    return YES;
-}
 
 -(void)uiWasTapped
 {
@@ -359,19 +335,11 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
         
-        
-        
         NSString * bar = object[@"Name"];
-        
         NSLog(@"bar string = %@", bar);
-        
         PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
-        
-        
         [query whereKey:@"Bar_Name" equalTo:bar];
         //[query orderByAscending:@"Special"];
-        
-        
         DTexBarDetailViewController *detailViewController = [segue destinationViewController];
         detailViewController.exam = [query getFirstObject];
     }
@@ -382,8 +350,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         // BarName = [selection objectForKey:@"Bar_Name"];
-        
-        
         PFObject *object = [self.objects objectAtIndex:indexPath.row];
 
         // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
@@ -405,50 +371,19 @@
     }
 }
 
-
-/*
-- (IBAction)backDayButton:(id)sender {
-}
-
-- (IBAction)forwardDayButton:(id)sender {
-    
-    NSLog(@"forward Day Button");
-    
-    _selectedPickerRow += 1;
-    
-    _dayLabel.text = [self getDayOfWeekString:[self getDayOfWeek]];
-    
-    [self loadObjects];
-    
-    [self.tableView reloadData];
-    
-    [self queryForTable];
-}
- */
-
-
 - (IBAction)backDayListener:(id)sender {
-    
     NSLog(@"back Day Listener");
-    
     _selectedPickerRow -= 1;
     _dayLabel.text = [self getDayOfWeekString:_selectedPickerRow];
-    
     [self loadObjects];
 }
 
 - (IBAction)forwardDayListener:(id)sender {
-    
     NSLog(@"forward Day Button");
-    
     _selectedPickerRow += 1;
-    
     _dayLabel.text = [self getDayOfWeekString:_selectedPickerRow];
-    
     [self loadObjects];
-    
     //[self.tableView reloadData];
-    
     //[self queryForTable];
 }
 @end
