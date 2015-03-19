@@ -7,10 +7,9 @@
 //
 
 #import "DTexBarsTableViewController.h"
-
 #import "DTexBarDetailViewController.h"
-
 #import "DTexBarTableViewCell.h"
+#import "DTexAppDelegate.h"
 
 
 @interface DTexBarsTableViewController ()
@@ -26,66 +25,32 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         // Customize the table
-        
         // The className to query on
         self.parseClassName = @"DTexBars";
-    
         // The key of the PFObject to display in the label of the default cell style
         self.textKey = @"Bar_Name";
-        
         self.title = @"Bars";
-        
         // Uncomment the following line to specify the key of a PFFile on the PFObject to display in the imageView of the default cell style
         // self.imageKey = @"image";
-        
         // Whether the built-in pull-to-refresh is enabled
         self.pullToRefreshEnabled = YES;
-        
         // Whether the built-in pagination is enabled
         self.paginationEnabled = YES;
-        
         // The number of objects to show per page
         self.objectsPerPage = 100;
     }
     return self;
 }
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom the table
-        // The className to query on
-        self.parseClassName = @"DTexBars";
-        // The key of the PFObject to display in the label of the default cell style
-        self.textKey = @"Bar_Name";
-        // The title for this table in the Navigation Controller.
-        self.title = @"DTexBars";
-        // Whether the built-in pull-to-refresh is enabled
-        self.pullToRefreshEnabled = YES;
-        // Whether the built-in pagination is enabled
-        self.paginationEnabled = YES;
-        // The number of objects to show per page
-        self.objectsPerPage = 25;;
-    }
-    return self;
-}
-*/
  
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    
-    
-    
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
@@ -99,22 +64,33 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+}
+
+/*
+- (void)viewWillDisappear:(BOOL)animated
+{
     [super viewWillDisappear:animated];
+}
+ */
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -135,16 +111,13 @@
 
 - (void)objectsDidLoad:(NSError *)error {
     [super objectsDidLoad:error];
-    
     // This method is called every time objects are loaded from Parse via the PFQuery
 }
 
 - (void)objectsWillLoad {
     [super objectsWillLoad];
-    
     // This method is called before a PFQuery is fired to get more objects
 }
-
 
 // Override to customize what kind of query to perform on the class. The default is to query for
 // all objects ordered by createdAt descending.
@@ -170,28 +143,197 @@
     if (cell == nil) {
         cell = [[DTexBarTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryNone;
 
     cell.CellBarNameLabel.text = [object objectForKey:@"Bar_Name"];
     cell.CellBarAddressLabel.text = [object objectForKey:@"Address"];
     cell.CellBarAreaLabel.text = [object objectForKey:@"Area"];
+    
+    [cell.CellBarLikeBtn addTarget:self
+               action:@selector(likeBtnPress:forEvent:)
+     forControlEvents:UIControlEventTouchUpInside];
+    
+    cell.CellBarLikeBtn.tag = indexPath.row;
 
     NSNumber *cellbar_rating = [object objectForKey:@"Rating"];
     NSString * rating_str = [cellbar_rating stringValue];
     rating_str = [rating_str stringByAppendingString:@" Likes"];
     
-    [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
-    
+    //[cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
+    cell.CellBarRatingLabel.text = rating_str;
     cell.CellIsLiked = NO;
-    
     return cell;
 }
 
+- (IBAction)likeBtnPress:(id)sender {
+    
+    
+    NSLog(@"LIKE Button Pressed: ");
+    
+    UIButton *btn = (UIButton *)sender;
+    
+    //NSLog(@"btn.tag %d",btn.tag);
+    //UITouch * touch = [[event allTouches] anyObject];
+    //CGPoint location = [touch locationInView: self.tableView];
+    //NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: location];
+    //NSLog(@"%d", indexPath.row);
+    //DTexBarTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    DTexBarTableViewCell * cell = (DTexBarTableViewCell*)[[sender superview] superview];
+    
+    //From the cell get its index path.
+    //NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // Find Point in Superview
+    CGPoint pointInSuperview = [btn.superview convertPoint:btn.center toView:self.tableView];
+    // Infer Index Path
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:pointInSuperview];
+    NSLog(@"%ld", indexPath.row);
+    
+    NSString * btn_title = [[btn titleLabel] text];
+    
+    NSLog(@"Button Title on Press = %@", btn_title);
+    
+    
+    if ([btn_title isEqualToString:@"NO"]) {
+        NSLog(@"NO");
+        [btn setTitle:@"YES" forState:UIControlStateSelected];
+        
+        if (btn.tag == indexPath.row) {
+            [btn setBackgroundColor:[UIColor greenColor]];
 
-- (IBAction)likeBarBtn:(id)sender {
+        cell.CellBarRatingLabel.text = @"NO";
+        cell.CellBarRatingLabel.textColor = [UIColor greenColor];
+        }
+        
+        //NSLog(@"Favorites List = %ld", [_favorites count]);
+        //NSLog(@"index path = %ld", indexPath.row);
+        //NSLog( NSStringFromClass( [_favorites class] ));
+        
+        //NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+        //[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil];
+        
+        /*
+         [self.tableView beginUpdates];
+         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+         [self.tableView endUpdates];
+         */
+        
+    }
+    else if ([btn_title isEqualToString:@"YES"]) {
+        NSLog(@"YES");
+        
+        [btn setTitle:@"NO" forState:UIControlStateNormal];
+        //[btn setTitle:@"NO" forState:UIControlStateDisabled];
+        //[btn setTitle:@"NO" forState:<#(UIControlState)#>];
+        [btn setBackgroundColor:[UIColor redColor]];
+        
+        cell.CellBarRatingLabel.text = @"YES";
+        cell.CellBarRatingLabel.textColor = [UIColor redColor];
+        
+        //NSLog(@"Favorites List = %ld", [_favorites count]);
+        NSLog(@"index path = %ld", indexPath.row);
+        //NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+        //[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil];
+        
+        /*
+         [self.tableView beginUpdates];
+         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+         [self.tableView endUpdates];
+         */
+        
+        
+    }
+}
+
+- (IBAction)likeBtnPress:(id)sender forEvent:(UIEvent *)event {
+    
+    NSLog(@"LIKE Button Pressed: ");
+    
+    UIButton *btn = (UIButton *)sender;
+    
+    //Get the superview from this button which will be our cell
+    //UITableViewCell *owningCell = (UITableViewCell*)[sender superview];
+    
+    //From the cell get its index path.
+    //NSIndexPath *pathToCell = [myTableView indexPathForCell:owningCell];
+
+    
+    //NSLog(@"btn.tag %d",btn.tag);
+    //UITouch * touch = [[event allTouches] anyObject];
+    //CGPoint location = [touch locationInView: self.tableView];
+    //NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: location];
+    //NSLog(@"%d", indexPath.row);
+    //DTexBarTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    DTexBarTableViewCell * cell = (DTexBarTableViewCell*)[[sender superview] superview];
+    
+    //From the cell get its index path.
+    //NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // Find Point in Superview
+    CGPoint pointInSuperview = [btn.superview convertPoint:btn.center toView:self.tableView];
+    
+    // Infer Index Path
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:pointInSuperview];
+    
+    NSString * btn_title = [[btn titleLabel] text];
+    
+    NSLog(@"Button Title on Press = %@", btn_title);
+    
+    
+    if ([btn_title isEqualToString:@"NO"]) {
+        NSLog(@"NO");
+        [btn setTitle:@"YES" forState:UIControlStateNormal];
+        
+        [btn setBackgroundColor:[UIColor greenColor]];
+        
+        cell.CellBarRatingLabel.text = @"NO";
+        cell.CellBarRatingLabel.textColor = [UIColor greenColor];
+        
+        //NSLog(@"Favorites List = %ld", [_favorites count]);
+        //NSLog(@"index path = %ld", indexPath.row);
+        //NSLog( NSStringFromClass( [_favorites class] ));
+
+        
+        //NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+                                     //[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil];
+        
+        /*
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+         */
+
+    }
+    else if ([btn_title isEqualToString:@"YES"]) {
+        NSLog(@"YES");
+    
+        [btn setTitle:@"NO" forState:UIControlStateNormal];
+        //[btn setTitle:@"NO" forState:UIControlStateDisabled];
+        //[btn setTitle:@"NO" forState:<#(UIControlState)#>];
+        [btn setBackgroundColor:[UIColor redColor]];
+        
+        cell.CellBarRatingLabel.text = @"YES";
+        cell.CellBarRatingLabel.textColor = [UIColor redColor];
+        
+        //NSLog(@"Favorites List = %ld", [_favorites count]);
+        NSLog(@"index path = %ld", indexPath.row);
+        //NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+        //[NSIndexPath indexPathForRow:indexPath.row inSection:0], nil];
+        
+        /*
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableView endUpdates];
+         */
+        
+        
+    }
     
     
 }
-
 
 /*
  // Override if you need to change the ordering of objects in the table.
@@ -228,9 +370,7 @@
  // Return NO if you do not want the specified item to be editable.
  return YES;
  }
- */
 
-/*
  // Override to support editing the table view.
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
@@ -249,9 +389,7 @@
  - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
  {
  }
- */
 
-/*
  // Override to support conditional rearranging of the table view.
  - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
  {
@@ -264,58 +402,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     [super tableView:tableView didSelectRowAtIndexPath:indexPath];
-    
-    //Retrieve the selected Category
-    PFObject *obj = [self.objects objectAtIndex:indexPath.row];
-    
-    //UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    DTexBarTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    BOOL isLiked = cell.CellIsLiked;
-    
-    if (isLiked) {
-        
-        NSNumber * like_cnt = [obj objectForKey:@"Rating"];
-        int cnt = [like_cnt integerValue];
-        cnt -= 1;
-        
-        like_cnt = [NSNumber numberWithInt:cnt];
-        
-        [obj setObject:like_cnt forKey:@"Rating"];
-        
-        NSNumber *cellbar_rating = [obj objectForKey:@"Rating"];
-        NSString * rating_str = [cellbar_rating stringValue];
-        rating_str = [rating_str stringByAppendingString:@" Likes"];
-        
-        [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
-        
-        cell.CellIsLiked = NO;
-        
-    }
-    else {
-        
-        NSNumber * like_cnt = [obj objectForKey:@"Rating"];
-        int cnt = [like_cnt integerValue];
-
-        like_cnt = [NSNumber numberWithInt:cnt + 1];
-        
-        [obj setObject:like_cnt forKey:@"Rating"];
-        
-        NSNumber *cellbar_rating = [obj objectForKey:@"Rating"];
-        NSString * rating_str = [cellbar_rating stringValue];
-        rating_str = [rating_str stringByAppendingString:@" Likes"];
-        
-        [cell.CellBarRatingBtn setTitle:rating_str forState:UIControlStateNormal];
-        
-        cell.CellIsLiked = YES;
-        
-    }
-    
-    
-    
-    
 }
 
  #pragma mark - Navigation
@@ -324,21 +411,13 @@
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
  {
      // Check that a new transition has been requested to the DetailViewController and prepares for it
-     if ([segue.identifier isEqualToString:@"viewsegue"]){
-         
+     if ([segue.identifier isEqualToString:@"viewsegue"]) {
          // Capture the object (e.g. exam) the user has selected from the list
          NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
          PFObject *object = [self.objects objectAtIndex:indexPath.row];
-         
          DTexBarDetailViewController *detailViewController = [segue destinationViewController];
          detailViewController.exam = object;
-         
-         // Set destination view controller to DetailViewController to avoid the NavigationViewController in the middle (if you have it embedded into a navigation controller, if not ignore that part)
-         /*
-         UINavigationController *nav = [segue destinationViewController];
-         DTexBarDetailViewController *detailViewController = (DTexBarDetailViewController *) nav.topViewController;
-         detailViewController.exam = object;
-          */
+
      }
  }
 
@@ -346,15 +425,3 @@
 @end
 
 
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        NSLog(@"initWithNibName Constructor");
-        
-    }
-    return self;
-}
-*/

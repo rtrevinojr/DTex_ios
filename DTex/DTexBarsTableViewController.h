@@ -8,6 +8,9 @@
 
 #import <Parse/Parse.h>
 
+#import "DTexAppDelegate.h"
+
+
 @interface DTexBarsTableViewController : PFQueryTableViewController
 
 @end

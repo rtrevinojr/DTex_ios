@@ -47,12 +47,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.view.window.bounds = CGRectMake(0, 50, self.view.window.frame.size.width, self.view.window.frame.size.height);
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
     
+    //self.view.window.bounds = CGRectMake(0, 50, self.view.window.frame.size.width, self.view.window.frame.size.height);
+    /*
+    if (self.navigationController.navigationBar.frame.origin.y > 0.0) {
+        self.navigationController.navigationBar.frame = CGRectOffset(self.navigationController.navigationBar.frame, 0.0, -20.0);
+    }
+    */
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.navigationController.edgesForExtendedLayout = UIRectEdgeNone;
     
+
+    
     //self.navigationController.wantsFullScreenLayout;
+    
+    //[self setWantsFullScreenLayout:YES];
     
     self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
    
@@ -69,13 +80,11 @@
     
     BarName = [selection objectForKey:@"Bar_Name"];
     BarKey = [selection objectForKey:@"ID"];
-    
     _AddressLabel.text = [selection objectForKey:@"Address"];
-    
     _BarLatitude = [selection objectForKey:@"latitude"];
     _BarLongitude = [selection objectForKey:@"longitude"];
     
-    NSLog(@"00000Bar Name = %@", BarName);
+    NSLog(@"Bar Name = %@", BarName);
     _BarNameLabel.text = BarName;
     _label_barname.text = BarName;
  
@@ -105,7 +114,6 @@
     
     region.center.latitude = [_BarLatitude floatValue];
     region.center.longitude = [_BarLongitude floatValue];
-    
     region.span.longitudeDelta = 0.005f;
     region.span.longitudeDelta = 0.005f;
     [mapView setRegion:region animated:NO];
@@ -122,21 +130,34 @@
     
     [self.mapView addAnnotation:point];
     [self.mapView selectAnnotation:point animated:YES];
- 
 }
 
-/*
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view addSubview:self.mapView];
-    [self.view sendSubviewToBack:self.mapView];
+    //[self.view addSubview:self.mapView];
+    //[self.view sendSubviewToBack:self.mapView];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    /*
+    if (self.view.superview.frame.origin.y > 44.0) {
+        UIView *container = self.view.superview;
+        container.frame = CGRectMake(container.frame.origin.x, container.frame.origin.y - 20.0, container.frame.size.width, container.frame.size.height + 20.0);
+    }
+     */
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.mapView removeFromSuperview];
+    //[self.mapView removeFromSuperview];
 }
- */
+
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
 
 //telprompt will return to your app after they finish the call
 - (IBAction)callTouched:(id)sender {

@@ -10,7 +10,6 @@
 
 #import "DTexBarDetailViewController.h"
 
-
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 
@@ -28,6 +27,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    
+    /*
+    if (self.navigationController.navigationBar.frame.origin.y > 0.0) {
+        self.navigationController.navigationBar.frame = CGRectOffset(self.navigationController.navigationBar.frame, 0.0, -30.0);
+    }
+     */
+    
     // Do any additional setup after loading the view.
     self.title = @"Map";
     
@@ -57,6 +66,21 @@
     [mapView setScrollEnabled:YES];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+}
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
@@ -90,6 +114,9 @@
     PFQuery *query = [PFQuery queryWithClassName:@"DTexBars"];
     
     NSArray * barlst = [query findObjects];
+    //NSArray * barlst = [query findObjectsInBackground];
+    
+    //[query findObjectsInBackgroundWithBlock:<#^(NSArray *objects, NSError *error)block#>]
     
     for (PFObject * obj in barlst) {
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];

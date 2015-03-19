@@ -1,21 +1,14 @@
 //
-//  DTexBarTableViewCell.m
+//  DTexFavoritesTableViewCell.m
 //  DTex
 //
-//  Created by Rene Trevino Jr. on 3/14/15.
+//  Created by Rene Trevino Jr. on 3/15/15.
 //  Copyright (c) 2015 CS378. All rights reserved.
 //
 
-#import "DTexBarTableViewCell.h"
+#import "DTexFavoritesTableViewCell.h"
 
-@interface DTexBarTableViewCell () 
-    
-@end
-
-@implementation DTexBarTableViewCell
-
-
-
+@implementation DTexFavoritesTableViewCell
 
 /*
 - (void)awakeFromNib {

@@ -15,4 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *CellSpecialLabel;
 @property (weak, nonatomic) IBOutlet UILabel *CellDayLabel;
 
+
+@property (weak, nonatomic) IBOutlet UIButton *likeEventBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *eventRatingLabel;
+
 @end

@@ -17,7 +17,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *CellBarAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *CellBarAreaLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *CellBarRatingBtn;
+@property (weak, nonatomic) IBOutlet UIButton *CellBarLikeBtn;
+
+@property (weak, nonatomic) IBOutlet UILabel *CellBarRatingLabel;
+
 
 @property (nonatomic, assign) BOOL CellIsLiked;
 

@@ -50,7 +50,11 @@
 		30CE750D1A140984004D68B5 /* Streamline-Icons.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE75091A140984004D68B5 /* Streamline-Icons.png */; };
 		30CE750E1A140984004D68B5 /* compass-direction-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE750A1A140984004D68B5 /* compass-direction-7.png */; };
 		30CE750F1A140984004D68B5 /* UITabBarFavorites_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE750B1A140984004D68B5 /* UITabBarFavorites_2x.png */; };
+		6C163F631AB9298D00EDE417 /* DTexDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */; };
+		6C63F8671AB5B2060058BC66 /* DTexFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */; };
 		6CEFA6981AB52D9C00A70A69 /* DTexBarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFA6971AB52D9C00A70A69 /* DTexBarTableViewCell.m */; };
+		6CEFA69A1AB57D9C00A70A69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CEFA6991AB57D9C00A70A69 /* CoreData.framework */; };
+		6CEFA6A01AB5A9B400A70A69 /* DTexFavoritesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFA69F1AB5A9B400A70A69 /* DTexFavoritesTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,8 +120,14 @@
 		30CE75091A140984004D68B5 /* Streamline-Icons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Streamline-Icons.png"; sourceTree = "<group>"; };
 		30CE750A1A140984004D68B5 /* compass-direction-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-direction-7.png"; sourceTree = "<group>"; };
 		30CE750B1A140984004D68B5 /* UITabBarFavorites_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarFavorites_2x.png; sourceTree = "<group>"; };
+		6C163F621AB9298D00EDE417 /* DTexDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DTexDataModel.xcdatamodel; sourceTree = "<group>"; };
+		6C63F8651AB5B2060058BC66 /* DTexFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexFavoritesTableViewCell.h; sourceTree = "<group>"; };
+		6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		6CEFA6961AB52D9C00A70A69 /* DTexBarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarTableViewCell.h; sourceTree = SOURCE_ROOT; };
 		6CEFA6971AB52D9C00A70A69 /* DTexBarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexBarTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		6CEFA6991AB57D9C00A70A69 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6CEFA69E1AB5A9B400A70A69 /* DTexFavoritesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexFavoritesTableViewController.h; sourceTree = "<group>"; };
+		6CEFA69F1AB5A9B400A70A69 /* DTexFavoritesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexFavoritesTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CEFA69A1AB57D9C00A70A69 /* CoreData.framework in Frameworks */,
 				1912BB4919F0C78C00C4FB3C /* AudioToolbox.framework in Frameworks */,
 				1912BB4719F0C59800C4FB3C /* MapKit.framework in Frameworks */,
 				1912BB4519F0C58D00C4FB3C /* SystemConfiguration.framework in Frameworks */,
@@ -163,6 +174,7 @@
 		1912BAEB19F0BF0F00C4FB3C = {
 			isa = PBXGroup;
 			children = (
+				6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */,
 				1958D9BF19F6C67F003D3BC2 /* DTexTabBarViewController.h */,
 				1958D9C019F6C67F003D3BC2 /* DTexTabBarViewController.m */,
 				1912BAFD19F0BF1000C4FB3C /* DTex */,
@@ -184,6 +196,7 @@
 		1912BAF619F0BF1000C4FB3C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CEFA6991AB57D9C00A70A69 /* CoreData.framework */,
 				1912BB4819F0C78C00C4FB3C /* AudioToolbox.framework */,
 				1912BB4619F0C59800C4FB3C /* MapKit.framework */,
 				1912BB4419F0C58D00C4FB3C /* SystemConfiguration.framework */,
@@ -209,12 +222,16 @@
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				6C63F8651AB5B2060058BC66 /* DTexFavoritesTableViewCell.h */,
+				6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */,
 				192A9F121A11AFDA0050E28B /* DTexMapViewController.h */,
 				192A9F131A11AFDA0050E28B /* DTexMapViewController.m */,
 				19634ED219F25BDF00B7935A /* DTexEventTableViewCell.h */,
 				19634ED319F25BDF00B7935A /* DTexEventTableViewCell.m */,
 				6CEFA6961AB52D9C00A70A69 /* DTexBarTableViewCell.h */,
 				6CEFA6971AB52D9C00A70A69 /* DTexBarTableViewCell.m */,
+				6CEFA69E1AB5A9B400A70A69 /* DTexFavoritesTableViewController.h */,
+				6CEFA69F1AB5A9B400A70A69 /* DTexFavoritesTableViewController.m */,
 				19634ECF19F2007A00B7935A /* DTexBarEventsTableViewController.h */,
 				19634ED019F2007A00B7935A /* DTexBarEventsTableViewController.m */,
 				19634ECC19F1FB0600B7935A /* DTexEventsTableViewController.h */,
@@ -381,10 +398,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C163F631AB9298D00EDE417 /* DTexDataModel.xcdatamodeld in Sources */,
+				6CEFA6A01AB5A9B400A70A69 /* DTexFavoritesTableViewController.m in Sources */,
 				1912BB4C19F0C94800C4FB3C /* DTexBarsTableViewController.m in Sources */,
 				1958D9CC19F6D641003D3BC2 /* DTexBarEventTableViewCell.m in Sources */,
 				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
 				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
+				6C63F8671AB5B2060058BC66 /* DTexFavoritesTableViewCell.m in Sources */,
 				192A9F141A11AFDA0050E28B /* DTexMapViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				6CEFA6981AB52D9C00A70A69 /* DTexBarTableViewCell.m in Sources */,
@@ -626,6 +646,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6C163F621AB9298D00EDE417 /* DTexDataModel.xcdatamodel */,
+			);
+			currentVersion = 6C163F621AB9298D00EDE417 /* DTexDataModel.xcdatamodel */;
+			path = DTexDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1912BAEC19F0BF0F00C4FB3C /* Project object */;
 }

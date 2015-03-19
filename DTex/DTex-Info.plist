@@ -9,7 +9,7 @@
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>UIStatusBarHidden</key>
-	<false/>
+	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>CFBundleDevelopmentRegion</key>
