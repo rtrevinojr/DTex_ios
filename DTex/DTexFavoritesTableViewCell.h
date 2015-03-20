@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface DTexFavoritesTableViewCell : UITableViewCell
+
+@interface DTexFavoritesTableViewCell : UITableViewCell <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *CellFavBarName;
 

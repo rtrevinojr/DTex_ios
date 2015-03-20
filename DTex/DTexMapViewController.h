@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <Parse/Parse.h> 
 
-@interface DTexMapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
+@interface DTexMapViewController : UITableViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (retain, nonatomic) CLLocationManager *locationManager;

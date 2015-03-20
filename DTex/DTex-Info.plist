@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>DTex would like to use your location</string>
 	<key>LSApplicationCategoryType</key>

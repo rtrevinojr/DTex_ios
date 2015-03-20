@@ -51,6 +51,7 @@
 		30CE750E1A140984004D68B5 /* compass-direction-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE750A1A140984004D68B5 /* compass-direction-7.png */; };
 		30CE750F1A140984004D68B5 /* UITabBarFavorites_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE750B1A140984004D68B5 /* UITabBarFavorites_2x.png */; };
 		6C163F631AB9298D00EDE417 /* DTexDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */; };
+		6C42C05B1ABA7B1000C91F5E /* DTexMapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C42C05A1ABA7B1000C91F5E /* DTexMapTableViewCell.m */; };
 		6C63F8671AB5B2060058BC66 /* DTexFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */; };
 		6CEFA6981AB52D9C00A70A69 /* DTexBarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFA6971AB52D9C00A70A69 /* DTexBarTableViewCell.m */; };
 		6CEFA69A1AB57D9C00A70A69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CEFA6991AB57D9C00A70A69 /* CoreData.framework */; };
@@ -121,6 +122,8 @@
 		30CE750A1A140984004D68B5 /* compass-direction-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-direction-7.png"; sourceTree = "<group>"; };
 		30CE750B1A140984004D68B5 /* UITabBarFavorites_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UITabBarFavorites_2x.png; sourceTree = "<group>"; };
 		6C163F621AB9298D00EDE417 /* DTexDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DTexDataModel.xcdatamodel; sourceTree = "<group>"; };
+		6C42C0591ABA7B1000C91F5E /* DTexMapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexMapTableViewCell.h; sourceTree = "<group>"; };
+		6C42C05A1ABA7B1000C91F5E /* DTexMapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexMapTableViewCell.m; sourceTree = "<group>"; };
 		6C63F8651AB5B2060058BC66 /* DTexFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexFavoritesTableViewCell.h; sourceTree = "<group>"; };
 		6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		6CEFA6961AB52D9C00A70A69 /* DTexBarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarTableViewCell.h; sourceTree = SOURCE_ROOT; };
@@ -222,6 +225,8 @@
 				1912BB0619F0BF1000C4FB3C /* DTexAppDelegate.h */,
 				1912BB0719F0BF1000C4FB3C /* DTexAppDelegate.m */,
 				1912BB0919F0BF1000C4FB3C /* Main.storyboard */,
+				6C42C0591ABA7B1000C91F5E /* DTexMapTableViewCell.h */,
+				6C42C05A1ABA7B1000C91F5E /* DTexMapTableViewCell.m */,
 				6C63F8651AB5B2060058BC66 /* DTexFavoritesTableViewCell.h */,
 				6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */,
 				192A9F121A11AFDA0050E28B /* DTexMapViewController.h */,
@@ -405,6 +410,7 @@
 				1912BB0E19F0BF1000C4FB3C /* DTexViewController.m in Sources */,
 				19D7C98A19F11120004ADE83 /* DTexBarDetailViewController.m in Sources */,
 				6C63F8671AB5B2060058BC66 /* DTexFavoritesTableViewCell.m in Sources */,
+				6C42C05B1ABA7B1000C91F5E /* DTexMapTableViewCell.m in Sources */,
 				192A9F141A11AFDA0050E28B /* DTexMapViewController.m in Sources */,
 				1912BB0419F0BF1000C4FB3C /* main.m in Sources */,
 				6CEFA6981AB52D9C00A70A69 /* DTexBarTableViewCell.m in Sources */,

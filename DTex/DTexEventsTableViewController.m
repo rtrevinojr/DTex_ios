@@ -164,7 +164,6 @@
             count++;
         }
          */
-        //[_eventFavorites_str addObject:@"hoavPAw51d"];
     }
     
     NSLog(@"Event Favorites............");
@@ -222,7 +221,7 @@
 {
     [super viewDidAppear:animated];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
