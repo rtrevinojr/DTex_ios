@@ -17,4 +17,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *BarCellSpecialLabel;
 @property (weak, nonatomic) IBOutlet UILabel *BarCellDayLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *BarCellRatingLabel;
 @end

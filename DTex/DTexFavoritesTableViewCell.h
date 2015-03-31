@@ -28,4 +28,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *cellFavRatingLabel;
 
+//@property (weak, nonatomic) IBOutlet UILabel *cellFavDayLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cellFavDayLabel;
+
+
+
 @end

@@ -15,6 +15,7 @@
 @interface DTexFavoritesTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray * favorites;
+@property (strong, nonatomic) NSArray* favorites_set;
 
 @end
 
@@ -24,10 +25,81 @@
     [super viewDidLoad];
     self.title = @"Favorites";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //get instance of app delegate
+    DTexAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    //create managed object context
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    //get entity description
+    NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"EventLikes" inManagedObjectContext:context];
+    //create a fetch request
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    //create predicate to filter request. We will be filtering our search by whatever is in the name text field.
+    //NSPredicate *pred  = [NSPredicate predicateWithFormat:@"(objectId = %@)", obj.objectId];
+    //[request setPredicate:pred];
+    //put the results in a managed object
+    NSManagedObject *matches = nil;
+    NSError *error;
+    NSArray *objects = [context executeFetchRequest:request error:&error];
+    
+    //objects = [[NSSet setWithArray:objects] allObjects];
+    
+    _favorites_set = [[NSSet setWithArray:objects] allObjects];
+    
+    self.favorites = [[NSMutableArray alloc] init];
+    //self.favorites = [objects mutableCopy];
+    
+    int i = 0;
+    for (NSString * sid in _favorites_set) {
+        if (sid != nil)
+            [_favorites addObject:sid];
+        i++;
+    }
+    
+    /*
+    //test the results of the search request
+    if ([objects count] == 0 ) {
+        NSLog(@"No objects found in Core Data");
+    }
+    else {
+        NSLog(@"Favorite Objects Count = %ld", [objects count]);
+        matches = objects[0];
+        //get the arrayData (string) and add it to a sting object.
+        NSString *arrayString = [matches valueForKey:@"objectId"];
+        //make an array from the string.
+        //NSArray *array = [arrayString componentsSeparatedByString:@","];
+        //cast the index as an int
+        //int theIndex = [_arrayIndexTextField.text intValue];
+        //output the results
+        NSLog(@"Core Data element = %@", arrayString);
+    }
+    */
+
+    //[request setEntity:entityDesc];
+    //NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+    //fetch.entity = [NSEntityDescription entityForName:@"EventLikes" inManagedObjectContext:context];
+    //fetch.predicate = [NSPredicate predicateWithFormat:@"objectId == %@", [btn currentTitle]];
+    //NSArray *array = [context executeFetchRequest:fetch error:nil];
+    //NSLog(@"Request array Count = %ld", [array count]);
+    
+/*
+    for (NSManagedObject *managedObject in objects) {
+        [context deleteObject:managedObject];
+        if ([_favorites containsObject:managedObject])
+            [_favorites removeObject:managedObject];
+    }
+*/
+    //[_favorites removeAllObjects];
+    
+    NSLog(@"NEW CORE DATA COUNT = %ld", [_favorites count]);
+    //NSLog(@"NEW CORE DATA COUNT = %ld", [_favorites count]);
+    
+}
+
+
+- (void) viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
     
     //get instance of app delegate
     DTexAppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
@@ -46,10 +118,24 @@
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
+    
+    _favorites_set = [[NSSet setWithArray:objects] allObjects];
+    
     self.favorites = [[NSMutableArray alloc] init];
-    self.favorites = [objects mutableCopy];
+    //self.favorites = [objects mutableCopy];
+    
+    int i = 0;
+    for (NSString * sid in _favorites_set) {
+        if (sid != nil)
+            [_favorites addObject:sid];
+        i++;
+    }
+    
+    //self.favorites = [[NSMutableArray alloc] init];
+    //self.favorites = [objects mutableCopy];
     
     
+    /*
     //test the results of the search request
     if ([objects count] == 0 ) {
         NSLog(@"No objects found in Core Data");
@@ -64,35 +150,37 @@
         //cast the index as an int
         //int theIndex = [_arrayIndexTextField.text intValue];
         //output the results
-        NSLog(@"Core Data element = %@", arrayString);
+        //NSLog(@"Core Data element = %@", arrayString);
     }
+    */
     
-
+    /*
     [request setEntity:entityDesc];
     NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
     fetch.entity = [NSEntityDescription entityForName:@"EventLikes" inManagedObjectContext:context];
     //fetch.predicate = [NSPredicate predicateWithFormat:@"objectId == %@", [btn currentTitle]];
     NSArray *array = [context executeFetchRequest:fetch error:nil];
     NSLog(@"Request array Count = %ld", [array count]);
+     */
     
-    for (NSManagedObject *managedObject in array) {
-        [context deleteObject:managedObject];
-        if ([_favorites containsObject:managedObject])
-            [_favorites removeObject:managedObject];
-    }
-    [_favorites removeAllObjects];
+/*
+     for (NSManagedObject *managedObject in array) {
+     [context deleteObject:managedObject];
+     if ([_favorites containsObject:managedObject])
+     [_favorites removeObject:managedObject];
+     }
+  */
+    //[_favorites removeAllObjects];
+    
     
     NSLog(@"NEW CORE DATA COUNT = %ld", [_favorites count]);
-    NSLog(@"NEW CORE DATA COUNT = %ld", [_favorites count]);
-    
- 
     
 }
 
-
-- (void) viewWillAppear:(BOOL) animated {
-    [super viewWillAppear:animated];
-    //[self.tableView reloadData];
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -119,56 +207,53 @@
 {
     static NSString *CellIdentifier = @"DTexFavCell";
     DTexFavoritesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     if (cell == nil) {
         cell = [[DTexFavoritesTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
 
     NSManagedObject *matches = nil;
-    NSError *error;
+    //NSError *error;
     //NSArray *objects = [context executeFetchRequest:request error:&error];
-    //test the results of the search request
     if ([self.favorites count] == 0 ) {
         NSLog(@"No objects found in Core Data");
     }
-    else if ( indexPath.row >= [_favorites count]) {
-        NSLog(@"No other objects found in Core Data");
-    }
+    //else if ( indexPath.row >= [_favorites count]) { NSLog(@"No other objects found in Core Data"); }
     else {
         matches = self.favorites[indexPath.row];
-        //get the arrayData (string) and add it to a sting object.
         NSString *objectID = [matches valueForKey:@"objectId"];
-        NSLog(@"Bar Object = %@", objectID);
+        //NSLog(@"Bar Object = %@", objectID);
         //NSString * bar_obj = [self.favorites objectAtIndex:indexPath.row];
-
         PFQuery *query = [PFQuery queryWithClassName:@"DTex_Events"];
-        [query whereKey:@"objectId" equalTo:objectID];
-        PFObject * object = [query getObjectWithId:objectID];
-    
-        /*
-         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-         PFObject *obj = [objects firstObject];
-         NSLog(@"%@", obj);
-         }];
-         */
-        cell.CellFavBarName.text = [object objectForKey:@"Name"];
-        cell.cellFavSummaryLabel.text = [object objectForKey:@"Summary"];
-        cell.cellFavSpecialLabel.text = [object objectForKey:@"Special"];
+        //[query whereKey:@"objectId" equalTo:objectID];
+        //PFObject * object = [query getObjectWithId:objectID];
+        [query getObjectInBackgroundWithId:objectID block:^(PFObject *object, NSError *error) {
+            //NSLog(@"%@", object);
+            cell.CellFavBarName.text = [object objectForKey:@"Name"];
+            cell.cellFavSummaryLabel.text = [object objectForKey:@"Summary"];
+            cell.cellFavSpecialLabel.text = [object objectForKey:@"Special"];
+            cell.cellFavDayLabel.text = [object objectForKey:@"Day"];
+            [cell.cellLikeBtn setTitle:[object objectId] forState:UIControlStateNormal];
+            NSNumber *cellbar_rating = [object objectForKey:@"Rating"];
+            NSString * rating_str = [cellbar_rating stringValue];
+            rating_str = [rating_str stringByAppendingString:@" Likes"];
+            cell.cellFavRatingLabel.text = rating_str;
+            [cell.cellLikeBtn addTarget: self
+                                 action: @selector(unLikeBtnPress:forEvent:)
+                       forControlEvents: UIControlEventTouchUpInside];
+            cell.cellLikeBtn.tag = indexPath.row;
+            
+            //temp button attributes
+            CALayer *likebtnLayer = [cell.cellLikeBtn layer];
+            [likebtnLayer setMasksToBounds:YES];
+            [likebtnLayer setCornerRadius:10.0f];
+            // Apply a 1 pixel, black border
+            [likebtnLayer setBorderWidth:1.0f];
+            [likebtnLayer setBorderColor:[[UIColor blackColor] CGColor]];
+            
+        }];
         
-        [cell.cellLikeBtn setTitle:[object objectId] forState:UIControlStateNormal];
-        
-        NSNumber *cellbar_rating = [object objectForKey:@"Rating"];
-        NSString * rating_str = [cellbar_rating stringValue];
-        rating_str = [rating_str stringByAppendingString:@" Likes"];
-        cell.cellFavRatingLabel.text = rating_str;
-        
-        //cell.cellFavRatingLabel.text = [[object objectForKey:@"Rating"] stringValue];
-        
-        [cell.cellLikeBtn addTarget: self
-                               action: @selector(unLikeBtnPress:forEvent:)
-                     forControlEvents: UIControlEventTouchUpInside];
-        cell.cellLikeBtn.tag = indexPath.row;
+
+
     }
     
     return cell;
@@ -187,19 +272,14 @@
     //NSLog(@"%d", indexPath.row);
     
     //if ([btn_title isEqualToString:@"YES"]) {
-        //[btn setTitle:@"NO" forState:UIControlStateNormal];
-        
         NSLog(@"Favorites List = %ld", [_favorites count]);
         NSLog(@"index path = %ld", indexPath.row);
-        
         //NSLog( NSStringFromClass( [_favorites class] ));
         
         [_favorites removeObjectAtIndex: (long)indexPath.row];
         //[_favorites removeObject: item];
         //[_favorites removeLastObject];
-        
 
-        
         //UITableView *tv = (UITableView *)self.view;
         NSString * btn_title = btn.currentTitle;
         NSLog(@"Button Title on Press = %@", btn_title);
@@ -212,43 +292,49 @@
         //create a fetch request
         NSFetchRequest *request = [[NSFetchRequest alloc]init];
         [request setEntity:entityDesc];
-        
         //NSManagedObject *matches = nil;
         //NSError *error;
         
         PFQuery *query = [PFQuery queryWithClassName:@"DTex_Events"];
         PFObject* obj = [query getObjectWithId:btn.currentTitle];
-        
         // Create a pointer to an object of class Point with id dlkj83d
         //PFObject *obj = [PFObject objectWithoutDataWithClassName:@"DTex_Events" objectId:btn.currentTitle];
-        
-        //NSNumber * val = obj[@"Rating"];
         NSNumber * val = [obj objectForKey:@"Rating"];
-        
         int valint = [val intValue];
-        NSLog(@"val int = %d", valint);
         val = [NSNumber numberWithInt:valint - 1];
-        
-        NSLog(@"val int - 1 = %@", val);
         [obj setObject:val forKey:@"Rating"];
         [obj save];
         //[_eventFavorites_str removeObject:btn.currentTitle];
-        
-        //NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
         //NSManagedObject *removeObj = [NSEntityDescription insertNewObjectForEntityForName:@"EventLikes" inManagedObjectContext:context];
 
         NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
         fetch.entity = [NSEntityDescription entityForName:@"EventLikes" inManagedObjectContext:context];
         fetch.predicate = [NSPredicate predicateWithFormat:@"objectId == %@", [btn currentTitle]];
         NSArray *array = [context executeFetchRequest:fetch error:nil];
-        
+    
+    for (NSManagedObject *managedObject in array) {
+        NSString * eid = [managedObject valueForKey:@"objectId"];
+        if (eid != nil) {
+            if ([eid isEqualToString:btn.currentTitle]) {
+                [_favorites removeObject:eid];
+                [context deleteObject:managedObject];
+            }
+        }
+    }
+    
+    /*
         for (NSManagedObject *managedObject in array) {
-            [context deleteObject:managedObject];
-            if ([_favorites containsObject:managedObject])
-                [_favorites removeObject:managedObject];
+            //[context deleteObject:managedObject];
+            
+            if ([_favorites containsObject:btn.currentTitle]) {
+                [_favorites removeObject:btn.currentTitle];
+                [context deleteObject:managedObject];
+            }
         }
         
     //}
+     */
     
     NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
                                  [NSIndexPath indexPathForRow:indexPath.row inSection:0], nil];

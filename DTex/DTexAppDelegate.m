@@ -12,10 +12,7 @@
 // If you are using Facebook, uncomment this line
 // #import <ParseFacebookUtils/PFFacebookUtils.h>
 
-// delete
-//#import "ParseStarterProjectViewController.h"
 #import "DTexBarsTableViewController.h"
-
 #import "DTexMapViewController.h"
 
 

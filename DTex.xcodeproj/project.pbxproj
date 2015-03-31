@@ -52,6 +52,8 @@
 		30CE750F1A140984004D68B5 /* UITabBarFavorites_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30CE750B1A140984004D68B5 /* UITabBarFavorites_2x.png */; };
 		6C163F631AB9298D00EDE417 /* DTexDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */; };
 		6C42C05B1ABA7B1000C91F5E /* DTexMapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C42C05A1ABA7B1000C91F5E /* DTexMapTableViewCell.m */; };
+		6C42C05D1AC438C300C91F5E /* DTexLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C42C05C1AC438C300C91F5E /* DTexLaunchScreen.xib */; };
+		6C42C05E1AC438C300C91F5E /* DTexLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C42C05C1AC438C300C91F5E /* DTexLaunchScreen.xib */; };
 		6C63F8671AB5B2060058BC66 /* DTexFavoritesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */; };
 		6CEFA6981AB52D9C00A70A69 /* DTexBarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CEFA6971AB52D9C00A70A69 /* DTexBarTableViewCell.m */; };
 		6CEFA69A1AB57D9C00A70A69 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CEFA6991AB57D9C00A70A69 /* CoreData.framework */; };
@@ -124,6 +126,7 @@
 		6C163F621AB9298D00EDE417 /* DTexDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DTexDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6C42C0591ABA7B1000C91F5E /* DTexMapTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexMapTableViewCell.h; sourceTree = "<group>"; };
 		6C42C05A1ABA7B1000C91F5E /* DTexMapTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexMapTableViewCell.m; sourceTree = "<group>"; };
+		6C42C05C1AC438C300C91F5E /* DTexLaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DTexLaunchScreen.xib; path = DTexTests/DTexLaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		6C63F8651AB5B2060058BC66 /* DTexFavoritesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexFavoritesTableViewCell.h; sourceTree = "<group>"; };
 		6C63F8661AB5B2060058BC66 /* DTexFavoritesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTexFavoritesTableViewCell.m; sourceTree = "<group>"; };
 		6CEFA6961AB52D9C00A70A69 /* DTexBarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTexBarTableViewCell.h; sourceTree = SOURCE_ROOT; };
@@ -177,6 +180,7 @@
 		1912BAEB19F0BF0F00C4FB3C = {
 			isa = PBXGroup;
 			children = (
+				6C42C05C1AC438C300C91F5E /* DTexLaunchScreen.xib */,
 				6C163F611AB9298D00EDE417 /* DTexDataModel.xcdatamodeld */,
 				1958D9BF19F6C67F003D3BC2 /* DTexTabBarViewController.h */,
 				1958D9C019F6C67F003D3BC2 /* DTexTabBarViewController.m */,
@@ -383,6 +387,7 @@
 				30CE750E1A140984004D68B5 /* compass-direction-7.png in Resources */,
 				1912BB0219F0BF1000C4FB3C /* InfoPlist.strings in Resources */,
 				30CE750C1A140984004D68B5 /* UITabBarContacts_2x.png in Resources */,
+				6C42C05D1AC438C300C91F5E /* DTexLaunchScreen.xib in Resources */,
 				30CE750F1A140984004D68B5 /* UITabBarFavorites_2x.png in Resources */,
 				1912BB0B19F0BF1000C4FB3C /* Main.storyboard in Resources */,
 			);
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1912BB2119F0BF1000C4FB3C /* InfoPlist.strings in Resources */,
+				6C42C05E1AC438C300C91F5E /* DTexLaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +561,7 @@
 				INFOPLIST_FILE = "DTex/DTex-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -575,6 +582,7 @@
 				INFOPLIST_FILE = "DTex/DTex-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
